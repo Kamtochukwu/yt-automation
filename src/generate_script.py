@@ -8,10 +8,15 @@ Set it as the GROQ_API_KEY environment variable / GitHub secret.
 
 import os
 import json
+import urllib.error
 import urllib.request
 
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_MODEL = "llama-3.1-8b-instant"  # fast + free tier friendly
+GROQ_MODELS = (
+    "llama-3.1-8b-instant",
+    "openai/gpt-oss-20b",
+    "llama-3.3-70b-versatile",
+)
 
 
 def generate_script(topic: dict) -> dict:
@@ -33,28 +38,41 @@ def generate_script(topic: dict) -> dict:
 
     user_prompt = f"Write {topic['prompt_hint']}"
 
-    payload = {
-        "model": GROQ_MODEL,
-        "messages": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt},
-        ],
-        "temperature": 0.9,
-        "response_format": {"type": "json_object"},
-    }
+    last_error = None
+    result = None
+    for model in GROQ_MODELS:
+        payload = {
+            "model": model,
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt},
+            ],
+            "temperature": 0.9,
+            "response_format": {"type": "json_object"},
+        }
+        req = urllib.request.Request(
+            GROQ_API_URL,
+            data=json.dumps(payload).encode("utf-8"),
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+                "User-Agent": "yt-automation/1.0",
+                "Accept": "application/json",
+            },
+            method="POST",
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                result = json.loads(resp.read().decode("utf-8"))
+            print(f"Groq model used: {model}")
+            break
+        except urllib.error.HTTPError as exc:
+            body = exc.read().decode("utf-8", errors="replace")[:400]
+            last_error = f"{exc.code} {exc.reason}: {body}"
+            print(f"Groq model {model} failed: {last_error}")
 
-    req = urllib.request.Request(
-        GROQ_API_URL,
-        data=json.dumps(payload).encode("utf-8"),
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
-        method="POST",
-    )
-
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        result = json.loads(resp.read().decode("utf-8"))
+    if result is None:
+        raise RuntimeError(f"Groq script generation failed: {last_error}")
 
     content = result["choices"][0]["message"]["content"]
     data = json.loads(content)
