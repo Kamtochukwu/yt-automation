@@ -11,12 +11,29 @@ import urllib.request
 import urllib.parse
 
 PEXELS_SEARCH_URL = "https://api.pexels.com/videos/search"
+USER_AGENT = "yt-automation/1.0"
+
+
+def _headers(api_key=None):
+    headers = {
+        "User-Agent": USER_AGENT,
+        "Accept": "application/json",
+    }
+    if api_key:
+        headers["Authorization"] = api_key
+    return headers
 
 
 def _get(url: str, api_key: str) -> dict:
-    req = urllib.request.Request(url, headers={"Authorization": api_key})
+    req = urllib.request.Request(url, headers=_headers(api_key))
     with urllib.request.urlopen(req, timeout=30) as resp:
         return json.loads(resp.read().decode("utf-8"))
+
+
+def _download(url: str, dest: str) -> None:
+    req = urllib.request.Request(url, headers=_headers())
+    with urllib.request.urlopen(req, timeout=60) as resp, open(dest, "wb") as out:
+        out.write(resp.read())
 
 
 def fetch_clips(keywords: list, out_dir: str, clips_needed: int = 4) -> list:
@@ -58,7 +75,7 @@ def fetch_clips(keywords: list, out_dir: str, clips_needed: int = 4) -> list:
 
             dest = os.path.join(out_dir, f"clip_{len(saved_paths)}.mp4")
             try:
-                urllib.request.urlretrieve(candidate["link"], dest)
+                _download(candidate["link"], dest)
                 saved_paths.append(dest)
             except Exception as e:
                 print(f"Download failed: {e}")
