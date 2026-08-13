@@ -17,30 +17,17 @@ so this comfortably supports one video/day.
 import os
 import json
 import urllib.request
-import urllib.parse
 
-TOKEN_URL = "https://oauth2.googleapis.com/token"
+from src.youtube_auth import get_access_token
+
 UPLOAD_URL = (
     "https://www.googleapis.com/upload/youtube/v3/videos"
     "?uploadType=resumable&part=snippet,status"
 )
 
 
-def _get_access_token() -> str:
-    payload = {
-        "client_id": os.environ["YT_CLIENT_ID"],
-        "client_secret": os.environ["YT_CLIENT_SECRET"],
-        "refresh_token": os.environ["YT_REFRESH_TOKEN"],
-        "grant_type": "refresh_token",
-    }
-    data = urllib.parse.urlencode(payload).encode()
-    req = urllib.request.Request(TOKEN_URL, data=data, method="POST")
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return json.loads(resp.read().decode())["access_token"]
-
-
 def upload_video(video_path: str, title: str, description: str, tags: list):
-    access_token = _get_access_token()
+    access_token = get_access_token()
 
     metadata = {
         "snippet": {

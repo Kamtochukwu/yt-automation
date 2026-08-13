@@ -3,10 +3,15 @@ Runs the full daily pipeline: pick topic -> generate script -> TTS ->
 fetch stock clips -> assemble video with captions -> upload to YouTube.
 
 Triggered daily by .github/workflows/daily.yml
+
+Commands:
+  python main.py          # make and upload today's Short
+  python main.py report   # write a channel progress report
 """
 
 import os
 import shutil
+import sys
 
 from config import pick_topic_for_today, WORKDIR
 from src.generate_script import generate_script
@@ -16,7 +21,7 @@ from src.assemble_video import assemble_video
 from src.upload_youtube import upload_video
 
 
-def main():
+def run_pipeline():
     if os.path.exists(WORKDIR):
         shutil.rmtree(WORKDIR)
     os.makedirs(WORKDIR)
@@ -53,6 +58,19 @@ def main():
     )
 
     print("Done!")
+
+
+def main():
+    command = sys.argv[1] if len(sys.argv) > 1 else "post"
+    if command in ("report", "analytics"):
+        from src.analytics import run_report
+
+        run_report()
+        return
+    if command in ("post", "run"):
+        run_pipeline()
+        return
+    raise SystemExit("Usage: python main.py [post|report]")
 
 
 if __name__ == "__main__":

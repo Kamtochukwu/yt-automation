@@ -14,7 +14,11 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 ROOT = Path(__file__).resolve().parent.parent
 SECRET_FILE = ROOT / "client_secret.json"
 ENV_FILE = ROOT / ".env"
-SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
+SCOPES = [
+    "https://www.googleapis.com/auth/youtube.upload",
+    "https://www.googleapis.com/auth/youtube.readonly",
+    "https://www.googleapis.com/auth/yt-analytics.readonly",
+]
 
 
 def main():
