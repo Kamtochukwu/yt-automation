@@ -10,6 +10,9 @@ import os
 import json
 import urllib.error
 import urllib.request
+from pathlib import Path
+
+USED_TOPICS_PATH = Path(__file__).resolve().parent.parent / "reports" / "used_topics.json"
 
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODELS = (
@@ -25,18 +28,42 @@ def generate_script(topic: dict) -> dict:
     'script' is the exact narration text (what the TTS voice will read).
     """
     api_key = os.environ["GROQ_API_KEY"]
+    used = []
+    if USED_TOPICS_PATH.exists():
+        try:
+            used = json.loads(USED_TOPICS_PATH.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            used = []
 
     system_prompt = (
-        "You write scripts for viral YouTube Shorts (30-45 seconds spoken). "
-        "Output ONLY valid JSON, no markdown fences, no commentary. "
+        "You write YouTube Shorts for SilentVision, a curiosity channel. "
+        "The videos that get traction are specific rare-animal secrets, "
+        "weird human-body facts, and concrete space wow facts. "
+        "Do not write motivation, finance, self-help, or generic trivia. "
+        "Hook in the first sentence. One fact only. Spoken, punchy, 80-110 words. "
+        "Only use a widely reported scientific fact. Do not invent numbers, "
+        "percentages, or fake mechanisms. If you are not sure, pick a simpler fact. "
+        "No stage directions, no emojis in the script. "
+        "Title style examples that worked: "
+        "'The SHOCKING Truth About Crocodiles Survival Secrets', "
+        "'Why You Never See Baby Birds', "
+        "'The Teaspoon That Weighs 4 Billion Tons'. "
+        "Title must be under 70 characters, no hashtags in the title. "
+        "keywords must be concrete stock-footage search terms for that subject "
+        "(animal name, habitat, planet, body part), not abstract words. "
+        "Output ONLY valid JSON, no markdown fences. "
         "JSON schema: "
-        '{"title": "<catchy <=60 char title>", '
-        '"script": "<narration text only, no stage directions, '
-        'no emojis, natural spoken sentences, 80-110 words>", '
-        '"keywords": ["<3-5 short visual search keywords for stock footage>"]}'
+        '{"title": "<catchy title>", '
+        '"script": "<narration text>", '
+        '"keywords": ["<3-5 visual search keywords>"], '
+        '"topic_key": "<short lowercase phrase naming the exact fact>"}'
     )
 
-    user_prompt = f"Write {topic['prompt_hint']}"
+    avoid = "; ".join(used[:40]) if used else "none yet"
+    user_prompt = (
+        f"Write {topic['prompt_hint']}\n"
+        f"Do not reuse any of these already-posted facts: {avoid}"
+    )
 
     last_error = None
     result = None
@@ -77,9 +104,18 @@ def generate_script(topic: dict) -> dict:
     content = result["choices"][0]["message"]["content"]
     data = json.loads(content)
 
-    # basic safety net in case keywords missing
     if not data.get("keywords"):
         data["keywords"] = topic["visual_keywords"]
+
+    topic_key = (data.get("topic_key") or data.get("title") or "").strip().lower()
+    if topic_key:
+        if topic_key not in [str(item).lower() for item in used]:
+            used.append(topic_key)
+            USED_TOPICS_PATH.parent.mkdir(parents=True, exist_ok=True)
+            USED_TOPICS_PATH.write_text(
+                json.dumps(used, indent=2),
+                encoding="utf-8",
+            )
 
     return data
 

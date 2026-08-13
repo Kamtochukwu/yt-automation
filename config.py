@@ -11,28 +11,57 @@ from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).resolve().parent / ".env")
 
+# SilentVision traction: rare animals, human-body oddities, and space wow
+# facts outperform motivation and finance by a wide margin.
 TOPICS = [
     {
-        "niche": "motivation",
-        "prompt_hint": "a short, punchy motivational message about discipline, "
-                        "resilience, or personal growth. Make it feel like a "
-                        "wake-up call, not a generic quote.",
-        "visual_keywords": ["sunrise", "running", "mountain climb", "city hustle"],
-        "hashtags": "#motivation #mindset #discipline #shorts",
+        "niche": "rare_animals",
+        "prompt_hint": (
+            "one surprising, verifiable fact about a rare, weird, or "
+            "extreme animal. Pick a specific creature people have not "
+            "heard of, or a known animal with a shocking survival trick. "
+            "Make it feel like a nature documentary secret, not a kids show."
+        ),
+        "visual_keywords": [
+            "wildlife closeup",
+            "jungle animal",
+            "ocean creature",
+            "frog rainforest",
+            "crocodile river",
+        ],
+        "hashtags": "#curiosity #education #facts #science #shorts",
     },
     {
-        "niche": "news_facts_trivia",
-        "prompt_hint": "one surprising, verifiable, and interesting fact about "
-                        "science, history, or the world that most people don't know.",
-        "visual_keywords": ["space", "nature timelapse", "technology", "abstract"],
-        "hashtags": "#didyouknow #facts #trivia #shorts",
+        "niche": "human_body",
+        "prompt_hint": (
+            "one surprising, verifiable fact about the human body or brain. "
+            "Something people feel every day but never understood, like a "
+            "hidden organ trick, a sense glitch, or a survival leftover."
+        ),
+        "visual_keywords": [
+            "human eye closeup",
+            "brain scan",
+            "heartbeat",
+            "hands closeup",
+            "medical science",
+        ],
+        "hashtags": "#curiosity #education #facts #science #shorts",
     },
     {
-        "niche": "finance_tech_tips",
-        "prompt_hint": "one practical, beginner-friendly tip about personal finance, "
-                        "saving money, or a useful tech/productivity trick.",
-        "visual_keywords": ["laptop coding", "money", "office work", "smartphone app"],
-        "hashtags": "#finance #moneytips #tech #shorts",
+        "niche": "space_wow",
+        "prompt_hint": (
+            "one surprising, verifiable space fact with a concrete image "
+            "people can picture: a planet, star, moon, astronaut body "
+            "change, or cosmic object. Avoid vague 'space is big' lines."
+        ),
+        "visual_keywords": [
+            "outer space stars",
+            "earth from space",
+            "astronaut",
+            "galaxy nebula",
+            "moon surface",
+        ],
+        "hashtags": "#curiosity #education #spacefacts #science #shorts",
     },
 ]
 
