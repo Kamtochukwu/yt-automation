@@ -3,7 +3,7 @@ name: Daily YouTube Short
 on:
   workflow_dispatch:
   schedule:
-    # Runs every day at 14:00 UTC. Edit to your preferred time.
+    # Three Shorts a day, 14:00 UTC. main.py posts all niches in one run.
     - cron: "0 14 * * *"
 
 permissions:
@@ -12,7 +12,7 @@ permissions:
 jobs:
   post-short:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4

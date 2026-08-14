@@ -101,6 +101,7 @@ def assemble_video(
 ):
     audio = AudioFileClip(audio_path)
     duration = audio.duration
+    print(f"Narration duration: {duration:.1f}s")
 
     background = _build_background(clip_paths, duration)
     captions = _build_caption_clips(word_timings, duration)

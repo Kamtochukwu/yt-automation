@@ -12,6 +12,8 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
+from config import TARGET_DURATION_SECONDS
+
 USED_TOPICS_PATH = Path(__file__).resolve().parent.parent / "reports" / "used_topics.json"
 
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
@@ -40,7 +42,17 @@ def generate_script(topic: dict) -> dict:
         "The videos that get traction are specific rare-animal secrets, "
         "weird human-body facts, and concrete space wow facts. "
         "Do not write motivation, finance, self-help, or generic trivia. "
-        "Hook in the first sentence. One fact only. Spoken, punchy, 80-110 words. "
+        "Structure the narration in this order: "
+        "1) HOOK: first sentence, 8-12 words, a stop-the-scroll claim. "
+        "Open with a contradiction, a hidden mechanism, or a fact that "
+        "sounds impossible. Never start with Did you know, Imagine, "
+        "What if, Hey, or Welcome. "
+        "2) PAYOFF: one widely reported scientific fact with a concrete "
+        "image people can picture. "
+        "3) TWIST: the weirder detail that makes the fact land. "
+        "4) CLOSE: one short line that rewards watching to the end. "
+        f"Spoken length must land near {TARGET_DURATION_SECONDS} seconds: "
+        "write 115-135 words, punchy, out loud, no filler. "
         "Only use a widely reported scientific fact. Do not invent numbers, "
         "percentages, or fake mechanisms. If you are not sure, pick a simpler fact. "
         "No stage directions, no emojis in the script. "
@@ -62,6 +74,8 @@ def generate_script(topic: dict) -> dict:
     avoid = "; ".join(used[:40]) if used else "none yet"
     user_prompt = (
         f"Write {topic['prompt_hint']}\n"
+        f"Make the hook the strongest line in the script. "
+        f"Target about {TARGET_DURATION_SECONDS} seconds spoken. "
         f"Do not reuse any of these already-posted facts: {avoid}"
     )
 

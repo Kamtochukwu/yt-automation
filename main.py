@@ -5,7 +5,8 @@ fetch stock clips -> assemble video with captions -> upload to YouTube.
 Triggered daily by .github/workflows/daily.yml
 
 Commands:
-  python main.py          # make and upload today's Short
+  python main.py          # make and upload today's 3 Shorts
+  python main.py post 1   # make and upload one Short
   python main.py report   # write a channel progress report
 """
 
@@ -13,7 +14,7 @@ import os
 import shutil
 import sys
 
-from config import pick_topic_for_today, WORKDIR
+from config import pick_topic_for_slot, VIDEOS_PER_DAY, WORKDIR
 from src.generate_script import generate_script
 from src.generate_audio import generate_audio
 from src.fetch_visuals import fetch_clips
@@ -21,13 +22,13 @@ from src.assemble_video import assemble_video
 from src.upload_youtube import upload_video
 
 
-def run_pipeline():
+def run_pipeline(slot: int = 0):
     if os.path.exists(WORKDIR):
         shutil.rmtree(WORKDIR)
     os.makedirs(WORKDIR)
 
-    topic = pick_topic_for_today()
-    print(f"Today's topic: {topic['niche']}")
+    topic = pick_topic_for_slot(slot)
+    print(f"Slot {slot + 1}/{VIDEOS_PER_DAY} niche: {topic['niche']}")
 
     print("Generating script...")
     script_data = generate_script(topic)
@@ -68,9 +69,14 @@ def main():
         run_report()
         return
     if command in ("post", "run"):
-        run_pipeline()
+        count = VIDEOS_PER_DAY
+        if len(sys.argv) > 2:
+            count = max(1, int(sys.argv[2]))
+        for slot in range(count):
+            print(f"\n=== Posting video {slot + 1} of {count} ===")
+            run_pipeline(slot)
         return
-    raise SystemExit("Usage: python main.py [post|report]")
+    raise SystemExit("Usage: python main.py [post [count]|report]")
 
 
 if __name__ == "__main__":

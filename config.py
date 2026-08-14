@@ -66,21 +66,27 @@ TOPICS = [
 ]
 
 
-def pick_topic_for_today():
+VIDEOS_PER_DAY = 3
+
+
+def pick_topic_for_slot(slot: int = 0):
     """
-    Deterministic-ish rotation: pick topic based on day-of-year so it's
-    different every day but reproducible if the workflow re-runs.
-    Falls back to random if you'd rather have full randomness.
+    Each daily run posts one video per niche. Slot 0, 1, 2 rotate
+    through TOPICS, shifted by day-of-year so the order changes.
     """
     import datetime
     day_index = datetime.date.today().timetuple().tm_yday
-    return TOPICS[day_index % len(TOPICS)]
+    return TOPICS[(day_index + int(slot)) % len(TOPICS)]
+
+
+def pick_topic_for_today():
+    return pick_topic_for_slot(0)
 
 
 # ---- Video settings ----
 VIDEO_WIDTH = 1080
 VIDEO_HEIGHT = 1920  # vertical, for Shorts
-TARGET_DURATION_SECONDS = 40  # keep it short-form friendly (under 60s)
+TARGET_DURATION_SECONDS = 45
 FONT_SIZE = 70
 CAPTION_COLOR = "white"
 CAPTION_HIGHLIGHT_COLOR = "#FFD700"
