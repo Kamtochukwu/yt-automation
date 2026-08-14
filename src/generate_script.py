@@ -18,10 +18,12 @@ USED_TOPICS_PATH = Path(__file__).resolve().parent.parent / "reports" / "used_to
 
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODELS = (
-    "llama-3.1-8b-instant",
-    "openai/gpt-oss-20b",
     "llama-3.3-70b-versatile",
+    "openai/gpt-oss-20b",
+    "llama-3.1-8b-instant",
 )
+MIN_SCRIPT_WORDS = 115
+MAX_SCRIPT_WORDS = 145
 
 
 def generate_script(topic: dict) -> dict:
@@ -80,15 +82,24 @@ def generate_script(topic: dict) -> dict:
     )
 
     last_error = None
-    result = None
-    for model in GROQ_MODELS:
+    data = None
+    best = None
+    best_distance = None
+    target_words = (MIN_SCRIPT_WORDS + MAX_SCRIPT_WORDS) // 2
+    for attempt, model in enumerate(GROQ_MODELS):
+        extra = ""
+        if attempt > 0:
+            extra = (
+                f" Previous draft was the wrong length. Rewrite it to "
+                f"{MIN_SCRIPT_WORDS}-{MAX_SCRIPT_WORDS} spoken words."
+            )
         payload = {
             "model": model,
             "messages": [
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt},
+                {"role": "user", "content": user_prompt + extra},
             ],
-            "temperature": 0.9,
+            "temperature": 0.7,
             "response_format": {"type": "json_object"},
         }
         req = urllib.request.Request(
@@ -105,18 +116,42 @@ def generate_script(topic: dict) -> dict:
         try:
             with urllib.request.urlopen(req, timeout=60) as resp:
                 result = json.loads(resp.read().decode("utf-8"))
-            print(f"Groq model used: {model}")
-            break
         except urllib.error.HTTPError as exc:
             body = exc.read().decode("utf-8", errors="replace")[:400]
             last_error = f"{exc.code} {exc.reason}: {body}"
             print(f"Groq model {model} failed: {last_error}")
+            continue
 
-    if result is None:
+        content = result["choices"][0]["message"]["content"]
+        try:
+            candidate = json.loads(content)
+        except json.JSONDecodeError as exc:
+            last_error = f"invalid JSON from {model}: {exc}"
+            print(last_error)
+            continue
+
+        script = (candidate.get("script") or "").strip()
+        word_count = len(script.split())
+        print(f"Groq model used: {model} ({word_count} words)")
+        distance = abs(word_count - target_words)
+        if best is None or distance < best_distance:
+            best = candidate
+            best_distance = distance
+        if word_count < MIN_SCRIPT_WORDS or word_count > MAX_SCRIPT_WORDS:
+            last_error = (
+                f"{model} wrote {word_count} words, "
+                f"need {MIN_SCRIPT_WORDS}-{MAX_SCRIPT_WORDS}"
+            )
+            print(last_error)
+            continue
+
+        data = candidate
+        break
+
+    if data is None:
+        data = best
+    if data is None:
         raise RuntimeError(f"Groq script generation failed: {last_error}")
-
-    content = result["choices"][0]["message"]["content"]
-    data = json.loads(content)
 
     if not data.get("keywords"):
         data["keywords"] = topic["visual_keywords"]
