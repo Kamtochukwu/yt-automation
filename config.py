@@ -68,11 +68,42 @@ TOPICS = [
 
 VIDEOS_PER_DAY = 3
 
+# One Short per window so uploads are spaced, not dumped at once.
+# Times are UTC. Nigeria is UTC+1, so these land at 8am / 3pm / 9pm.
+POST_WINDOWS = (
+    {"name": "morning", "utc_hour": 7},
+    {"name": "afternoon", "utc_hour": 14},
+    {"name": "night", "utc_hour": 20},
+)
+SLOT_NAMES = {window["name"]: index for index, window in enumerate(POST_WINDOWS)}
+
+
+def slot_for_now(name: str | None = None) -> int:
+    """
+    Map a window name or the current UTC hour to slot 0, 1, or 2.
+    Morning < 11:00 UTC, afternoon < 17:00 UTC, otherwise night.
+    """
+    if name:
+        key = name.strip().lower()
+        if key.isdigit():
+            return max(0, min(VIDEOS_PER_DAY - 1, int(key)))
+        if key in SLOT_NAMES:
+            return SLOT_NAMES[key]
+
+    from datetime import datetime, timezone
+
+    hour = datetime.now(timezone.utc).hour
+    if hour < 11:
+        return 0
+    if hour < 17:
+        return 1
+    return 2
+
 
 def pick_topic_for_slot(slot: int = 0):
     """
-    Each daily run posts one video per niche. Slot 0, 1, 2 rotate
-    through TOPICS, shifted by day-of-year so the order changes.
+    Each daily window posts one niche. Slot 0, 1, 2 rotate through
+    TOPICS, shifted by day-of-year so the order changes.
     """
     import datetime
     day_index = datetime.date.today().timetuple().tm_yday
@@ -80,7 +111,7 @@ def pick_topic_for_slot(slot: int = 0):
 
 
 def pick_topic_for_today():
-    return pick_topic_for_slot(0)
+    return pick_topic_for_slot(slot_for_now())
 
 
 # ---- Video settings ----

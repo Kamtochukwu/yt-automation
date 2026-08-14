@@ -5,16 +5,17 @@ fetch stock clips -> assemble video with captions -> upload to YouTube.
 Triggered daily by .github/workflows/daily.yml
 
 Commands:
-  python main.py          # make and upload today's 3 Shorts
-  python main.py post 1   # make and upload one Short
-  python main.py report   # write a channel progress report
+  python main.py                 # one Short for this time of day
+  python main.py post morning    # force the morning slot
+  python main.py post 3          # all 3 Shorts in one run
+  python main.py report          # write a channel progress report
 """
 
 import os
 import shutil
 import sys
 
-from config import pick_topic_for_slot, VIDEOS_PER_DAY, WORKDIR
+from config import pick_topic_for_slot, slot_for_now, VIDEOS_PER_DAY, POST_WINDOWS, WORKDIR
 from src.generate_script import generate_script
 from src.generate_audio import generate_audio
 from src.fetch_visuals import fetch_clips
@@ -28,7 +29,8 @@ def run_pipeline(slot: int = 0):
     os.makedirs(WORKDIR)
 
     topic = pick_topic_for_slot(slot)
-    print(f"Slot {slot + 1}/{VIDEOS_PER_DAY} niche: {topic['niche']}")
+    window = POST_WINDOWS[slot % len(POST_WINDOWS)]["name"]
+    print(f"Slot {slot + 1}/{VIDEOS_PER_DAY} ({window}) niche: {topic['niche']}")
 
     print("Generating script...")
     script_data = generate_script(topic)
@@ -69,14 +71,18 @@ def main():
         run_report()
         return
     if command in ("post", "run"):
-        count = VIDEOS_PER_DAY
-        if len(sys.argv) > 2:
-            count = max(1, int(sys.argv[2]))
-        for slot in range(count):
-            print(f"\n=== Posting video {slot + 1} of {count} ===")
-            run_pipeline(slot)
+        requested = sys.argv[2] if len(sys.argv) > 2 else os.environ.get("POST_SLOT", "auto")
+        if str(requested).isdigit() and int(requested) > 1:
+            count = min(VIDEOS_PER_DAY, int(requested))
+            for slot in range(count):
+                print(f"\n=== Posting video {slot + 1} of {count} ===")
+                run_pipeline(slot)
+            return
+        slot = slot_for_now(None if requested in (None, "", "auto") else requested)
+        print(f"\n=== Posting {POST_WINDOWS[slot]['name']} Short ===")
+        run_pipeline(slot)
         return
-    raise SystemExit("Usage: python main.py [post [count]|report]")
+    raise SystemExit("Usage: python main.py [post [morning|afternoon|night|count]|report]")
 
 
 if __name__ == "__main__":

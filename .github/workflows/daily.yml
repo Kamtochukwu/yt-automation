@@ -2,9 +2,21 @@ name: Daily YouTube Short
 
 on:
   workflow_dispatch:
+    inputs:
+      slot:
+        description: "Which window to post"
+        type: choice
+        options:
+          - auto
+          - morning
+          - afternoon
+          - night
+        default: auto
   schedule:
-    # Three Shorts a day, 14:00 UTC. main.py posts all niches in one run.
+    # One Short per window (Nigeria: 8am / 3pm / 9pm). Do not dump all 3 at once.
+    - cron: "0 7 * * *"
     - cron: "0 14 * * *"
+    - cron: "0 20 * * *"
 
 permissions:
   contents: write
@@ -12,7 +24,7 @@ permissions:
 jobs:
   post-short:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 20
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -39,6 +51,7 @@ jobs:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          POST_SLOT: ${{ github.event.inputs.slot || 'auto' }}
         run: python main.py
 
       - name: Save used topics
