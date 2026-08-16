@@ -25,6 +25,43 @@ GROQ_MODELS = (
 MIN_SCRIPT_WORDS = 115
 MAX_SCRIPT_WORDS = 145
 
+# Reject drafts that would split the channel away from body facts.
+OFF_NICHE_WORDS = (
+    "squid",
+    "frog",
+    "shark",
+    "mole",
+    "giraffe",
+    "axolotl",
+    "crocodile",
+    "aardvark",
+    "okapi",
+    "jellyfish",
+    "planet",
+    "moon",
+    "galaxy",
+    "astronaut",
+    "supernova",
+    "neutron",
+    "motivation",
+    "rise up",
+    "invest",
+    "crypto",
+    "millionaire",
+)
+
+
+def _on_niche(candidate: dict) -> str | None:
+    """Return a reject reason, or None if the draft stays on the body niche."""
+    title = (candidate.get("title") or "").strip()
+    title_l = title.lower()
+    if "you" not in title_l and "your" not in title_l:
+        return "title missing You/Your"
+    for word in OFF_NICHE_WORDS:
+        if word in title_l:
+            return f"off-niche title word: {word}"
+    return None
+
 
 def generate_script(topic: dict) -> dict:
     """
@@ -40,17 +77,20 @@ def generate_script(topic: dict) -> dict:
             used = []
 
     system_prompt = (
-        "You write YouTube Shorts for SilentVision, a curiosity channel. "
-        "The videos that get traction are specific rare-animal secrets, "
-        "weird human-body facts, and concrete space wow facts. "
-        "Do not write motivation, finance, self-help, or generic trivia. "
+        "You write YouTube Shorts for SilentVision. "
+        "This channel is ONLY about hidden mechanisms inside the viewer's body. "
+        "Every video must be about their skin, senses, organs, blood, bones, "
+        "muscles, nerves, healing, or a leftover from human evolution. "
+        "Never write about animals, space, planets, stars, the moon, "
+        "motivation, finance, self-help, or generic trivia. "
+        "Never write vague brain philosophy like 'your brain is lying' "
+        "or 'the brain is so cool'. Pick one body part and one mechanism. "
         "Structure the narration in this order: "
         "1) HOOK: first sentence, 8-12 words, a stop-the-scroll claim. "
-        "Open with a contradiction, a hidden mechanism, or a fact that "
-        "sounds impossible. Never start with Did you know, Imagine, "
-        "What if, Hey, or Welcome. "
+        "Open with a contradiction or a fact that sounds impossible. "
+        "Never start with Did you know, Imagine, What if, Hey, or Welcome. "
         "2) PAYOFF: one widely reported scientific fact with a concrete "
-        "image people can picture. "
+        "image the viewer can feel on their own body. "
         "3) TWIST: the weirder detail that makes the fact land. "
         "4) CLOSE: one short line that rewards watching to the end. "
         f"Spoken length must land near {TARGET_DURATION_SECONDS} seconds: "
@@ -58,13 +98,18 @@ def generate_script(topic: dict) -> dict:
         "Only use a widely reported scientific fact. Do not invent numbers, "
         "percentages, or fake mechanisms. If you are not sure, pick a simpler fact. "
         "No stage directions, no emojis in the script. "
+        "Title MUST contain You or Your. Under 70 characters. No hashtags. "
+        "No emojis. Name the body part and the hidden mechanism. "
         "Title style examples that worked: "
-        "'The SHOCKING Truth About Crocodiles Survival Secrets', "
-        "'Why You Never See Baby Birds', "
-        "'The Teaspoon That Weighs 4 Billion Tons'. "
-        "Title must be under 70 characters, no hashtags in the title. "
-        "keywords must be concrete stock-footage search terms for that subject "
-        "(animal name, habitat, planet, body part), not abstract words. "
+        "'Your Skin is a Supercomputer', "
+        "'You Are Born with 300 Pain Sensors in Your Eyes', "
+        "'Why Your Brain Can't Feel Pain', "
+        "'Your Gut Controls Your Mood', "
+        "'Why You Can't Tickle Yourself', "
+        "'Bones Remember Your Life'. "
+        "keywords must be concrete stock-footage search terms for that "
+        "body part (human eye closeup, skin texture, heartbeat, hands, "
+        "blood vessels), not abstract words. "
         "Output ONLY valid JSON, no markdown fences. "
         "JSON schema: "
         '{"title": "<catchy title>", '
@@ -76,6 +121,7 @@ def generate_script(topic: dict) -> dict:
     avoid = "; ".join(used[:40]) if used else "none yet"
     user_prompt = (
         f"Write {topic['prompt_hint']}\n"
+        f"Title must use You or Your, like 'Your Skin is a Supercomputer'. "
         f"Make the hook the strongest line in the script. "
         f"Target about {TARGET_DURATION_SECONDS} seconds spoken. "
         f"Do not reuse any of these already-posted facts: {avoid}"
@@ -133,6 +179,11 @@ def generate_script(topic: dict) -> dict:
         script = (candidate.get("script") or "").strip()
         word_count = len(script.split())
         print(f"Groq model used: {model} ({word_count} words)")
+        niche_fail = _on_niche(candidate)
+        if niche_fail:
+            last_error = f"{model} off-niche: {niche_fail}"
+            print(last_error)
+            continue
         distance = abs(word_count - target_words)
         if best is None or distance < best_distance:
             best = candidate
@@ -152,6 +203,9 @@ def generate_script(topic: dict) -> dict:
         data = best
     if data is None:
         raise RuntimeError(f"Groq script generation failed: {last_error}")
+    niche_fail = _on_niche(data)
+    if niche_fail:
+        raise RuntimeError(f"script left the body niche: {niche_fail}")
 
     if not data.get("keywords"):
         data["keywords"] = topic["visual_keywords"]

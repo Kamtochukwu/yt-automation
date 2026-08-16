@@ -30,7 +30,8 @@ def run_pipeline(slot: int = 0):
 
     topic = pick_topic_for_slot(slot)
     window = POST_WINDOWS[slot % len(POST_WINDOWS)]["name"]
-    print(f"Slot {slot + 1}/{VIDEOS_PER_DAY} ({window}) niche: {topic['niche']}")
+    angle = topic.get("angle") or "body"
+    print(f"Slot {slot + 1}/{VIDEOS_PER_DAY} ({window}) niche: {topic['niche']} / {angle}")
 
     print("Generating script...")
     script_data = generate_script(topic)
