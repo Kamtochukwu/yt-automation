@@ -51,6 +51,7 @@ jobs:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           POST_SLOT: ${{ github.event.inputs.slot || 'auto' }}
         run: python main.py
 
@@ -66,3 +67,10 @@ jobs:
             git commit -m "Record posted SilentVision topic"
             git push
           fi
+
+      - name: Notify phone if the post failed
+        if: failure()
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          POST_SLOT: ${{ github.event.inputs.slot || 'auto' }}
+        run: python -c "from src.notify import notify_failed; notify_failed()"

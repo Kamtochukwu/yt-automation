@@ -9,6 +9,7 @@ Commands:
   python main.py post morning    # force the morning slot
   python main.py post 3          # all 3 Shorts in one run
   python main.py report          # write a channel progress report
+  python main.py notify-test     # send a test phone push
 """
 
 import os
@@ -29,6 +30,7 @@ from src.generate_script import generate_script, record_used_topic
 from src.generate_audio import generate_audio
 from src.fetch_visuals import fetch_clips
 from src.assemble_video import assemble_video
+from src.notify import notify_posted
 from src.upload_youtube import upload_video
 
 LENGTH_RETRIES = 2
@@ -98,13 +100,19 @@ def run_pipeline(slot: int = 0):
 
     description = f"{script_data['script']}\n\n{topic['hashtags']}"
     print("Uploading to YouTube...")
-    upload_video(
+    result = upload_video(
         video_path=video_path,
         title=script_data["title"],
         description=description,
         tags=script_data["keywords"],
     )
     record_used_topic(script_data.get("topic_key") or script_data.get("title") or "")
+    notify_posted(
+        title=script_data["title"],
+        video_id=(result or {}).get("id") or "",
+        duration=duration,
+        window=window,
+    )
 
     print("Done!")
 
@@ -116,6 +124,14 @@ def main():
 
         run_report()
         return
+    if command in ("notify-test", "test-notify"):
+        ok = notify_posted(
+            title="SilentVision phone test",
+            video_id="GVpLZROBLR0",
+            duration=49,
+            window="test",
+        )
+        raise SystemExit(0 if ok else 1)
     if command in ("post", "run"):
         requested = sys.argv[2] if len(sys.argv) > 2 else os.environ.get("POST_SLOT", "auto")
         if str(requested).isdigit() and int(requested) > 1:
@@ -128,7 +144,9 @@ def main():
         print(f"\n=== Posting {POST_WINDOWS[slot]['name']} Short ===")
         run_pipeline(slot)
         return
-    raise SystemExit("Usage: python main.py [post [morning|afternoon|night|count]|report]")
+    raise SystemExit(
+        "Usage: python main.py [post [morning|afternoon|night|count]|report|notify-test]"
+    )
 
 
 if __name__ == "__main__":
