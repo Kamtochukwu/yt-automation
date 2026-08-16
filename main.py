@@ -15,12 +15,33 @@ import os
 import shutil
 import sys
 
-from config import pick_topic_for_slot, slot_for_now, VIDEOS_PER_DAY, POST_WINDOWS, WORKDIR
-from src.generate_script import generate_script
+from config import (
+    MAX_DURATION_SECONDS,
+    MIN_DURATION_SECONDS,
+    POST_WINDOWS,
+    TARGET_DURATION_SECONDS,
+    VIDEOS_PER_DAY,
+    WORKDIR,
+    pick_topic_for_slot,
+    slot_for_now,
+)
+from src.generate_script import generate_script, record_used_topic
 from src.generate_audio import generate_audio
 from src.fetch_visuals import fetch_clips
 from src.assemble_video import assemble_video
 from src.upload_youtube import upload_video
+
+LENGTH_RETRIES = 2
+
+
+def _write_script_and_audio(topic, audio_path, length_hint=""):
+    print("Generating script...")
+    script_data = generate_script(topic, length_hint=length_hint)
+    print("Title:", script_data["title"])
+    print("Script:", script_data["script"])
+    print("Generating narration audio...")
+    word_timings, duration = generate_audio(script_data["script"], audio_path)
+    return script_data, word_timings, duration
 
 
 def run_pipeline(slot: int = 0):
@@ -33,14 +54,31 @@ def run_pipeline(slot: int = 0):
     angle = topic.get("angle") or "body"
     print(f"Slot {slot + 1}/{VIDEOS_PER_DAY} ({window}) niche: {topic['niche']} / {angle}")
 
-    print("Generating script...")
-    script_data = generate_script(topic)
-    print("Title:", script_data["title"])
-    print("Script:", script_data["script"])
-
     audio_path = os.path.join(WORKDIR, "narration.mp3")
-    print("Generating narration audio...")
-    word_timings = generate_audio(script_data["script"], audio_path)
+    length_hint = ""
+    script_data = None
+    word_timings = None
+    duration = 0.0
+    for attempt in range(LENGTH_RETRIES + 1):
+        script_data, word_timings, duration = _write_script_and_audio(
+            topic, audio_path, length_hint
+        )
+        if MIN_DURATION_SECONDS <= duration <= MAX_DURATION_SECONDS:
+            break
+        length_hint = (
+            f"Previous narration was {duration:.0f} seconds. "
+            f"That is not acceptable. Write a {TARGET_DURATION_SECONDS} second "
+            f"read-aloud, about 125-140 spoken words, same body fact."
+        )
+        print(
+            f"Length retry {attempt + 1}/{LENGTH_RETRIES}: "
+            f"{duration:.1f}s is outside {MIN_DURATION_SECONDS}-{MAX_DURATION_SECONDS}s"
+        )
+    else:
+        raise RuntimeError(
+            f"Narration is {duration:.1f}s, need {MIN_DURATION_SECONDS}-"
+            f"{MAX_DURATION_SECONDS}s. Not uploading a short Short."
+        )
 
     clips_dir = os.path.join(WORKDIR, "clips")
     print("Fetching stock clips...")
@@ -50,7 +88,13 @@ def run_pipeline(slot: int = 0):
 
     video_path = os.path.join(WORKDIR, "final.mp4")
     print("Assembling video...")
-    assemble_video(clip_paths, audio_path, word_timings, video_path)
+    assemble_video(
+        clip_paths,
+        audio_path,
+        word_timings,
+        video_path,
+        title=script_data["title"],
+    )
 
     description = f"{script_data['script']}\n\n{topic['hashtags']}"
     print("Uploading to YouTube...")
@@ -60,6 +104,7 @@ def run_pipeline(slot: int = 0):
         description=description,
         tags=script_data["keywords"],
     )
+    record_used_topic(script_data.get("topic_key") or script_data.get("title") or "")
 
     print("Done!")
 

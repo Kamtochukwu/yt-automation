@@ -33,17 +33,25 @@ async def _synthesize(text: str, out_mp3: str):
     return word_timings
 
 
-def generate_audio(text: str, out_mp3: str) -> list:
+def generate_audio(text: str, out_mp3: str) -> tuple[list, float]:
     """
-    Writes narration audio to out_mp3 and returns a list of
-    {"word": str, "start": float, "duration": float} for captions.
+    Writes narration audio to out_mp3.
+    Returns (word_timings, spoken_duration_seconds).
     """
-    return asyncio.run(_synthesize(text, out_mp3))
+    timings = asyncio.run(_synthesize(text, out_mp3))
+    if timings:
+        last = timings[-1]
+        duration = last["start"] + last["duration"]
+    else:
+        duration = 0.0
+    print(f"Narration duration: {duration:.1f}s")
+    return timings, duration
 
 
 if __name__ == "__main__":
     import json
 
     sample = "This is a quick test of the free text to speech engine."
-    timings = generate_audio(sample, "test.mp3")
+    timings, duration = generate_audio(sample, "test.mp3")
+    print("duration", duration)
     print(json.dumps(timings, indent=2))

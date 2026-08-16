@@ -17,6 +17,9 @@ from moviepy import (
 from config import VIDEO_WIDTH, VIDEO_HEIGHT, FONT_SIZE, CAPTION_COLOR
 
 
+TITLE_SECONDS = 2.6
+
+
 def _build_background(clip_paths: list, target_duration: float):
     """Concatenate/loop clips, cropped+resized to fill the vertical frame."""
     clips = []
@@ -93,20 +96,46 @@ def _build_caption_clips(word_timings: list, video_duration: float):
     return caption_clips
 
 
+def _title_card(title: str, hold: float):
+    text = (title or "").strip()
+    if not text:
+        return None
+    return (
+        TextClip(
+            text=text,
+            font_size=58,
+            color="white",
+            font="DejaVu-Sans-Bold",
+            stroke_color="black",
+            stroke_width=3,
+            method="caption",
+            size=(int(VIDEO_WIDTH * 0.9), None),
+        )
+        .with_position(("center", 260))
+        .with_start(0)
+        .with_duration(min(hold, TITLE_SECONDS))
+    )
+
+
 def assemble_video(
     clip_paths: list,
     audio_path: str,
     word_timings: list,
     out_path: str,
+    title: str = "",
 ):
     audio = AudioFileClip(audio_path)
     duration = audio.duration
-    print(f"Narration duration: {duration:.1f}s")
+    print(f"Assembling {duration:.1f}s video")
 
     background = _build_background(clip_paths, duration)
-    captions = _build_caption_clips(word_timings, duration)
+    layers = [background]
+    title_clip = _title_card(title, duration)
+    if title_clip is not None:
+        layers.append(title_clip)
+    layers.extend(_build_caption_clips(word_timings, duration))
 
-    final = CompositeVideoClip([background, *captions], size=(VIDEO_WIDTH, VIDEO_HEIGHT))
+    final = CompositeVideoClip(layers, size=(VIDEO_WIDTH, VIDEO_HEIGHT))
     final = final.with_audio(audio)
     final = final.with_duration(duration)
 

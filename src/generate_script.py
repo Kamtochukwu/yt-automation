@@ -22,8 +22,11 @@ GROQ_MODELS = (
     "openai/gpt-oss-20b",
     "llama-3.1-8b-instant",
 )
-MIN_SCRIPT_WORDS = 115
-MAX_SCRIPT_WORDS = 145
+# Counted after the follow CTA is attached. ~2.7 words/sec on GuyNeural
+# lands 122-140 words near 45 seconds.
+MIN_SCRIPT_WORDS = 122
+MAX_SCRIPT_WORDS = 148
+SCRIPT_ATTEMPTS = 6
 
 # Reject drafts that would split the channel away from body facts.
 OFF_NICHE_WORDS = (
@@ -74,7 +77,25 @@ def _with_cta(script: str) -> str:
     return f"{text} {END_CTA}".strip()
 
 
-def generate_script(topic: dict) -> dict:
+def record_used_topic(topic_key: str) -> None:
+    """Remember a fact only after the Short is long enough to upload."""
+    key = (topic_key or "").strip().lower()
+    if not key:
+        return
+    used = []
+    if USED_TOPICS_PATH.exists():
+        try:
+            used = json.loads(USED_TOPICS_PATH.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            used = []
+    if key in [str(item).lower() for item in used]:
+        return
+    used.append(key)
+    USED_TOPICS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    USED_TOPICS_PATH.write_text(json.dumps(used, indent=2), encoding="utf-8")
+
+
+def generate_script(topic: dict, length_hint: str = "") -> dict:
     """
     Returns a dict: {"title": ..., "script": ..., "keywords": [...]}
     'script' is the exact narration text (what the TTS voice will read).
@@ -136,20 +157,24 @@ def generate_script(topic: dict) -> dict:
         f"Title must use You or Your, like 'Your Skin is a Supercomputer'. "
         f"Make the hook the strongest line in the script. "
         f"Target about {TARGET_DURATION_SECONDS} seconds spoken. "
+        f"Write enough for a {TARGET_DURATION_SECONDS} second read-aloud: "
+        f"{MIN_SCRIPT_WORDS - 12}-{MAX_SCRIPT_WORDS - 12} words before the follow line. "
         f"Do not reuse any of these already-posted facts: {avoid}"
     )
+    if length_hint:
+        user_prompt += f"\n{length_hint}"
 
     last_error = None
     data = None
-    best = None
-    best_distance = None
-    target_words = (MIN_SCRIPT_WORDS + MAX_SCRIPT_WORDS) // 2
-    for attempt, model in enumerate(GROQ_MODELS):
+    for attempt in range(SCRIPT_ATTEMPTS):
+        model = GROQ_MODELS[attempt % len(GROQ_MODELS)]
         extra = ""
         if attempt > 0:
             extra = (
                 f" Previous draft was the wrong length. Rewrite it to "
-                f"{MIN_SCRIPT_WORDS}-{MAX_SCRIPT_WORDS} spoken words."
+                f"{MIN_SCRIPT_WORDS}-{MAX_SCRIPT_WORDS} spoken words including "
+                f"a natural ending. Expand the payoff and twist with concrete "
+                f"body detail. Do not pad with filler."
             )
         payload = {
             "model": model,
@@ -188,18 +213,15 @@ def generate_script(topic: dict) -> dict:
             print(last_error)
             continue
 
-        script = (candidate.get("script") or "").strip()
+        candidate["script"] = _with_cta(candidate.get("script") or "")
+        script = candidate["script"]
         word_count = len(script.split())
-        print(f"Groq model used: {model} ({word_count} words)")
+        print(f"Groq model used: {model} ({word_count} words with CTA)")
         niche_fail = _on_niche(candidate)
         if niche_fail:
             last_error = f"{model} off-niche: {niche_fail}"
             print(last_error)
             continue
-        distance = abs(word_count - target_words)
-        if best is None or distance < best_distance:
-            best = candidate
-            best_distance = distance
         if word_count < MIN_SCRIPT_WORDS or word_count > MAX_SCRIPT_WORDS:
             last_error = (
                 f"{model} wrote {word_count} words, "
@@ -212,28 +234,15 @@ def generate_script(topic: dict) -> dict:
         break
 
     if data is None:
-        data = best
-    if data is None:
-        raise RuntimeError(f"Groq script generation failed: {last_error}")
-    niche_fail = _on_niche(data)
-    if niche_fail:
-        raise RuntimeError(f"script left the body niche: {niche_fail}")
+        raise RuntimeError(
+            f"Groq script generation failed (no {MIN_SCRIPT_WORDS}-"
+            f"{MAX_SCRIPT_WORDS} word draft): {last_error}"
+        )
 
-    data["script"] = _with_cta(data.get("script") or "")
     print("CTA:", END_CTA)
 
     if not data.get("keywords"):
         data["keywords"] = topic["visual_keywords"]
-
-    topic_key = (data.get("topic_key") or data.get("title") or "").strip().lower()
-    if topic_key:
-        if topic_key not in [str(item).lower() for item in used]:
-            used.append(topic_key)
-            USED_TOPICS_PATH.parent.mkdir(parents=True, exist_ok=True)
-            USED_TOPICS_PATH.write_text(
-                json.dumps(used, indent=2),
-                encoding="utf-8",
-            )
 
     return data
 
