@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -97,6 +98,14 @@ def _safe_float(value, default=0.0) -> float:
         return float(value)
     except (TypeError, ValueError):
         return default
+
+
+def _iso_duration_seconds(value: str) -> int:
+    match = re.fullmatch(r"PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?", value or "")
+    if not match:
+        return 0
+    hours, minutes, seconds = (int(part) if part else 0 for part in match.groups())
+    return hours * 3600 + minutes * 60 + seconds
 
 
 def collect_snapshot() -> dict:
@@ -225,6 +234,9 @@ def collect_snapshot() -> dict:
                 "id": item.get("id"),
                 "title": item.get("snippet", {}).get("title"),
                 "published_at": item.get("snippet", {}).get("publishedAt"),
+                "duration_seconds": _iso_duration_seconds(
+                    item.get("contentDetails", {}).get("duration", "")
+                ),
                 "views": _safe_int(item.get("statistics", {}).get("viewCount")),
                 "likes": _safe_int(item.get("statistics", {}).get("likeCount")),
                 "comments": _safe_int(item.get("statistics", {}).get("commentCount")),
@@ -314,13 +326,14 @@ def render_markdown(snapshot: dict, previous: dict | None = None) -> str:
 
     lines.extend(["", "## Recent uploads", ""])
     if snapshot["recent_uploads"]:
-        lines.append("| Video | Published | Views | Likes | Comments |")
-        lines.append("| --- | --- | ---: | ---: | ---: |")
+        lines.append("| Video | Published | Length | Views | Likes | Comments |")
+        lines.append("| --- | --- | ---: | ---: | ---: | ---: |")
         for video in snapshot["recent_uploads"]:
             title = (video["title"] or video["id"]).replace("|", "/")
             published = (video.get("published_at") or "")[:10]
+            length = video.get("duration_seconds") or 0
             lines.append(
-                f"| [{title}]({video['url']}) | {published} | "
+                f"| [{title}]({video['url']}) | {published} | {length}s | "
                 f"{video['views']} | {video['likes']} | {video['comments']} |"
             )
     else:

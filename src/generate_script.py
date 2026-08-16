@@ -19,7 +19,6 @@ USED_TOPICS_PATH = Path(__file__).resolve().parent.parent / "reports" / "used_to
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODELS = (
     "llama-3.3-70b-versatile",
-    "openai/gpt-oss-20b",
     "llama-3.1-8b-instant",
 )
 # Counted after the follow CTA is attached. ~2.7 words/sec on GuyNeural
