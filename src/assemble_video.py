@@ -6,6 +6,8 @@ Uses MoviePy (free, local, no API). Requires ffmpeg installed on the runner
 (the GitHub Actions workflow installs it).
 """
 
+from pathlib import Path
+
 from moviepy import (
     VideoFileClip,
     AudioFileClip,
@@ -18,6 +20,24 @@ from config import VIDEO_WIDTH, VIDEO_HEIGHT, FONT_SIZE, CAPTION_COLOR
 
 
 TITLE_SECONDS = 2.6
+# MoviePy 2 uses Pillow, which needs a real .ttf path, not an ImageMagick name.
+FONT_CANDIDATES = (
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+    "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+    "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf",
+    "C:/Windows/Fonts/arialbd.ttf",
+    "C:/Windows/Fonts/Arialbd.ttf",
+)
+
+
+def _caption_font() -> str:
+    for path in FONT_CANDIDATES:
+        if Path(path).is_file():
+            return path
+    return "DejaVu-Sans-Bold"
+
+
+CAPTION_FONT = _caption_font()
 
 
 def _build_background(clip_paths: list, target_duration: float):
@@ -81,7 +101,7 @@ def _build_caption_clips(word_timings: list, video_duration: float):
                 text=text,
                 font_size=FONT_SIZE,
                 color=CAPTION_COLOR,
-                font="DejaVu-Sans-Bold",
+                font=CAPTION_FONT,
                 stroke_color="black",
                 stroke_width=3,
                 method="caption",
@@ -105,7 +125,7 @@ def _title_card(title: str, hold: float):
             text=text,
             font_size=58,
             color="white",
-            font="DejaVu-Sans-Bold",
+            font=CAPTION_FONT,
             stroke_color="black",
             stroke_width=3,
             method="caption",
@@ -126,7 +146,7 @@ def assemble_video(
 ):
     audio = AudioFileClip(audio_path)
     duration = audio.duration
-    print(f"Assembling {duration:.1f}s video")
+    print(f"Assembling {duration:.1f}s video with {CAPTION_FONT}")
 
     background = _build_background(clip_paths, duration)
     layers = [background]

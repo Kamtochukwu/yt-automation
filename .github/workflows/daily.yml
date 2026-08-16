@@ -35,7 +35,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install ffmpeg
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg imagemagick
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg imagemagick fonts-dejavu-core
 
       - name: Allow ImageMagick to render text (MoviePy captions)
         run: |
