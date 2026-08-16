@@ -12,7 +12,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-from config import TARGET_DURATION_SECONDS
+from config import END_CTA, TARGET_DURATION_SECONDS
 
 USED_TOPICS_PATH = Path(__file__).resolve().parent.parent / "reports" / "used_topics.json"
 
@@ -63,6 +63,17 @@ def _on_niche(candidate: dict) -> str | None:
     return None
 
 
+def _with_cta(script: str) -> str:
+    """Make sure the spoken follow line is at the end, once."""
+    text = (script or "").strip()
+    lowered = text.lower()
+    if "follow this channel" in lowered or "subscribe" in lowered:
+        return text
+    if text and text[-1] not in ".!?":
+        text += "."
+    return f"{text} {END_CTA}".strip()
+
+
 def generate_script(topic: dict) -> dict:
     """
     Returns a dict: {"title": ..., "script": ..., "keywords": [...]}
@@ -92,7 +103,8 @@ def generate_script(topic: dict) -> dict:
         "2) PAYOFF: one widely reported scientific fact with a concrete "
         "image the viewer can feel on their own body. "
         "3) TWIST: the weirder detail that makes the fact land. "
-        "4) CLOSE: one short line that rewards watching to the end. "
+        "4) CLOSE: one short fact payoff. Do not ask people to follow, "
+        "subscribe, like, or comment. A follow line is added after you write. "
         f"Spoken length must land near {TARGET_DURATION_SECONDS} seconds: "
         "write 115-135 words, punchy, out loud, no filler. "
         "Only use a widely reported scientific fact. Do not invent numbers, "
@@ -206,6 +218,9 @@ def generate_script(topic: dict) -> dict:
     niche_fail = _on_niche(data)
     if niche_fail:
         raise RuntimeError(f"script left the body niche: {niche_fail}")
+
+    data["script"] = _with_cta(data.get("script") or "")
+    print("CTA:", END_CTA)
 
     if not data.get("keywords"):
         data["keywords"] = topic["visual_keywords"]
