@@ -53,8 +53,7 @@ def run_pipeline(slot: int = 0):
 
     topic = pick_topic_for_slot(slot)
     window = POST_WINDOWS[slot % len(POST_WINDOWS)]["name"]
-    angle = topic.get("angle") or "body"
-    print(f"Slot {slot + 1}/{VIDEOS_PER_DAY} ({window}) niche: {topic['niche']} / {angle}")
+    print(f"Slot {slot + 1}/{VIDEOS_PER_DAY} ({window}) niche: {topic['niche']}")
 
     audio_path = os.path.join(WORKDIR, "narration.mp3")
     length_hint = ""
@@ -70,7 +69,7 @@ def run_pipeline(slot: int = 0):
         length_hint = (
             f"Previous narration was {duration:.0f} seconds. "
             f"That is not acceptable. Write a {TARGET_DURATION_SECONDS} second "
-            f"read-aloud, about 125-140 spoken words, same body fact."
+            f"read-aloud, about 125-140 spoken words, same fact."
         )
         print(
             f"Length retry {attempt + 1}/{LENGTH_RETRIES}: "

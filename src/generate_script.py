@@ -17,52 +17,17 @@ from config import END_CTA, TARGET_DURATION_SECONDS
 USED_TOPICS_PATH = Path(__file__).resolve().parent.parent / "reports" / "used_topics.json"
 
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
+# Groq shut down llama-3.3-70b-versatile and llama-3.1-8b-instant on 2026-08-16.
 GROQ_MODELS = (
-    "llama-3.3-70b-versatile",
-    "llama-3.1-8b-instant",
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b",
+    "qwen/qwen3.6-27b",
 )
 # Counted after the follow CTA is attached. ~2.7 words/sec on GuyNeural
 # lands 122-140 words near 45 seconds.
 MIN_SCRIPT_WORDS = 122
 MAX_SCRIPT_WORDS = 148
 SCRIPT_ATTEMPTS = 6
-
-# Reject drafts that would split the channel away from body facts.
-OFF_NICHE_WORDS = (
-    "squid",
-    "frog",
-    "shark",
-    "mole",
-    "giraffe",
-    "axolotl",
-    "crocodile",
-    "aardvark",
-    "okapi",
-    "jellyfish",
-    "planet",
-    "moon",
-    "galaxy",
-    "astronaut",
-    "supernova",
-    "neutron",
-    "motivation",
-    "rise up",
-    "invest",
-    "crypto",
-    "millionaire",
-)
-
-
-def _on_niche(candidate: dict) -> str | None:
-    """Return a reject reason, or None if the draft stays on the body niche."""
-    title = (candidate.get("title") or "").strip()
-    title_l = title.lower()
-    if "you" not in title_l and "your" not in title_l:
-        return "title missing You/Your"
-    for word in OFF_NICHE_WORDS:
-        if word in title_l:
-            return f"off-niche title word: {word}"
-    return None
 
 
 def _with_cta(script: str) -> str:
@@ -108,40 +73,35 @@ def generate_script(topic: dict, length_hint: str = "") -> dict:
             used = []
 
     system_prompt = (
-        "You write YouTube Shorts for SilentVision. "
-        "This channel is ONLY about hidden mechanisms inside the viewer's body. "
-        "Every video must be about their skin, senses, organs, blood, bones, "
-        "muscles, nerves, healing, or a leftover from human evolution. "
-        "Never write about animals, space, planets, stars, the moon, "
-        "motivation, finance, self-help, or generic trivia. "
-        "Never write vague brain philosophy like 'your brain is lying' "
-        "or 'the brain is so cool'. Pick one body part and one mechanism. "
+        "You write YouTube Shorts for SilentVision, a curiosity channel. "
+        "The videos that get traction are specific rare-animal secrets, "
+        "weird human-body facts, and concrete space wow facts. "
+        "Do not write motivation, finance, self-help, or generic trivia. "
         "Structure the narration in this order: "
         "1) HOOK: first sentence, 8-12 words, a stop-the-scroll claim. "
-        "Open with a contradiction or a fact that sounds impossible. "
-        "Never start with Did you know, Imagine, What if, Hey, or Welcome. "
+        "Open with a contradiction, a hidden mechanism, or a fact that "
+        "sounds impossible. Never start with Did you know, Imagine, "
+        "What if, Hey, or Welcome. "
         "2) PAYOFF: one widely reported scientific fact with a concrete "
-        "image the viewer can feel on their own body. "
+        "image people can picture. "
         "3) TWIST: the weirder detail that makes the fact land. "
-        "4) CLOSE: one short fact payoff. Do not ask people to follow, "
-        "subscribe, like, or comment. A follow line is added after you write. "
+        "4) CLOSE: one short line that rewards watching to the end. "
+        "Do not ask people to follow, subscribe, like, or comment. "
+        "A follow line is added after you write. "
         f"Spoken length must land near {TARGET_DURATION_SECONDS} seconds: "
         "write 115-135 words, punchy, out loud, no filler. "
         "Only use a widely reported scientific fact. Do not invent numbers, "
         "percentages, or fake mechanisms. If you are not sure, pick a simpler fact. "
         "No stage directions, no emojis in the script. "
-        "Title MUST contain You or Your. Under 70 characters. No hashtags. "
-        "No emojis. Name the body part and the hidden mechanism. "
         "Title style examples that worked: "
-        "'Your Skin is a Supercomputer', "
-        "'You Are Born with 300 Pain Sensors in Your Eyes', "
-        "'Why Your Brain Can't Feel Pain', "
-        "'Your Gut Controls Your Mood', "
-        "'Why You Can't Tickle Yourself', "
-        "'Bones Remember Your Life'. "
-        "keywords must be concrete stock-footage search terms for that "
-        "body part (human eye closeup, skin texture, heartbeat, hands, "
-        "blood vessels), not abstract words. "
+        "'The SHOCKING Truth About Crocodiles Survival Secrets', "
+        "'Why You Never See Baby Birds', "
+        "'The Teaspoon That Weighs 4 Billion Tons', "
+        "'The SHOCKING Reason for the Moon's Dark Side', "
+        "'The Mantis Shrimp: Ocean's Hidden Rainbow Eye'. "
+        "Title must be under 70 characters, no hashtags in the title. "
+        "keywords must be concrete stock-footage search terms for that subject "
+        "(animal name, habitat, planet, body part), not abstract words. "
         "Output ONLY valid JSON, no markdown fences. "
         "JSON schema: "
         '{"title": "<catchy title>", '
@@ -153,7 +113,6 @@ def generate_script(topic: dict, length_hint: str = "") -> dict:
     avoid = "; ".join(used[:40]) if used else "none yet"
     user_prompt = (
         f"Write {topic['prompt_hint']}\n"
-        f"Title must use You or Your, like 'Your Skin is a Supercomputer'. "
         f"Make the hook the strongest line in the script. "
         f"Target about {TARGET_DURATION_SECONDS} seconds spoken. "
         f"Write enough for a {TARGET_DURATION_SECONDS} second read-aloud: "
@@ -173,7 +132,7 @@ def generate_script(topic: dict, length_hint: str = "") -> dict:
                 f" Previous draft was the wrong length. Rewrite it to "
                 f"{MIN_SCRIPT_WORDS}-{MAX_SCRIPT_WORDS} spoken words including "
                 f"a natural ending. Expand the payoff and twist with concrete "
-                f"body detail. Do not pad with filler."
+                f"detail. Do not pad with filler."
             )
         payload = {
             "model": model,
@@ -216,11 +175,6 @@ def generate_script(topic: dict, length_hint: str = "") -> dict:
         script = candidate["script"]
         word_count = len(script.split())
         print(f"Groq model used: {model} ({word_count} words with CTA)")
-        niche_fail = _on_niche(candidate)
-        if niche_fail:
-            last_error = f"{model} off-niche: {niche_fail}"
-            print(last_error)
-            continue
         if word_count < MIN_SCRIPT_WORDS or word_count > MAX_SCRIPT_WORDS:
             last_error = (
                 f"{model} wrote {word_count} words, "

@@ -1,7 +1,7 @@
 # Daily Faceless Shorts Automation (100% Free)
 
 Every day this pipeline automatically:
-1. Picks a human-body topic (skin/senses, organs, or bones/nerves)
+1. Picks a topic (rare animal, human-body fact, or space wow)
 2. Writes a script with a **free** LLM (Groq)
 3. Converts it to speech with a **free** TTS voice (edge-tts)
 4. Grabs matching **free** stock footage (Pexels)
@@ -88,7 +88,7 @@ You can also trigger it manually anytime: repo → Actions tab →
 
 ## Customizing
 
-- **Topics/niches**: SilentVision is locked to human-body facts. Edit `BODY_ANGLES` in `config.py` if you want different body systems.
+- **Topics/niches**: edit the `TOPICS` list in `config.py`. SilentVision rotates rare animals, body facts, and space wow.
 - **Voice**: change `TTS_VOICE` in `config.py` — run `edge-tts --list-voices`
   locally to see all free options (many languages/accents).
 - **Video length/style**: adjust `TARGET_DURATION_SECONDS`, `FONT_SIZE`, etc.

@@ -1,9 +1,7 @@
 """
 Central config for the daily Shorts automation.
-
-SilentVision posts one niche only: hidden mechanisms in the viewer's body.
-YouTube can then recognize the channel and keep sending it to that audience.
-Animals, space, motivation, and finance are off the table.
+Edit TOPICS to add/remove niches. The bot rotates through them
+so you get variety instead of the same niche every day.
 """
 
 from pathlib import Path
@@ -12,66 +10,58 @@ from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).resolve().parent / ".env")
 
-CHANNEL_NICHE = "human_body"
-CHANNEL_HASHTAGS = "#humanbody #bodyfacts #curiosity #education #science #shorts"
-
-# Same niche, different body systems. Morning gets the proven skin/senses lane.
-BODY_ANGLES = (
-    {
-        "angle": "skin_senses",
-        "prompt_hint": (
-            "one surprising, verifiable fact about skin, eyes, pain, touch, "
-            "smell, taste, hearing, or another sense. The viewer must be able "
-            "to feel or picture it happening on their own body right now."
-        ),
-        "visual_keywords": [
-            "human skin closeup",
-            "human eye closeup",
-            "hands closeup",
-            "person blinking",
-            "fingerprint skin",
-        ],
-    },
-    {
-        "angle": "organs_blood",
-        "prompt_hint": (
-            "one surprising, verifiable fact about the gut, stomach, liver, "
-            "heart, lungs, blood, or immune system. Something happening inside "
-            "the viewer right now, not a textbook organ tour."
-        ),
-        "visual_keywords": [
-            "heartbeat",
-            "blood cells microscope",
-            "human stomach",
-            "person breathing",
-            "medical science",
-        ],
-    },
-    {
-        "angle": "bones_nerves",
-        "prompt_hint": (
-            "one surprising, verifiable fact about bones, muscles, nerves, "
-            "healing, or a leftover from evolution the viewer still has. "
-            "Make it about their body, not a museum skeleton."
-        ),
-        "visual_keywords": [
-            "human skeleton",
-            "muscles closeup",
-            "spine xray",
-            "hands tendons",
-            "medical science",
-        ],
-    },
-)
-
-# Kept so older imports and docs still resolve. Always the body niche.
+# SilentVision traction: rare animals, human-body oddities, and space wow
+# facts outperform motivation and finance by a wide margin.
 TOPICS = [
     {
-        "niche": CHANNEL_NICHE,
-        "prompt_hint": BODY_ANGLES[0]["prompt_hint"],
-        "visual_keywords": BODY_ANGLES[0]["visual_keywords"],
-        "hashtags": CHANNEL_HASHTAGS,
-    }
+        "niche": "rare_animals",
+        "prompt_hint": (
+            "one surprising, verifiable fact about a rare, weird, or "
+            "extreme animal. Pick a specific creature people have not "
+            "heard of, or a known animal with a shocking survival trick. "
+            "Make it feel like a nature documentary secret, not a kids show."
+        ),
+        "visual_keywords": [
+            "wildlife closeup",
+            "jungle animal",
+            "ocean creature",
+            "frog rainforest",
+            "crocodile river",
+        ],
+        "hashtags": "#curiosity #education #facts #science #shorts",
+    },
+    {
+        "niche": "human_body",
+        "prompt_hint": (
+            "one surprising, verifiable fact about the human body or brain. "
+            "Something people feel every day but never understood, like a "
+            "hidden organ trick, a sense glitch, or a survival leftover."
+        ),
+        "visual_keywords": [
+            "human eye closeup",
+            "brain scan",
+            "heartbeat",
+            "hands closeup",
+            "medical science",
+        ],
+        "hashtags": "#curiosity #education #facts #science #shorts",
+    },
+    {
+        "niche": "space_wow",
+        "prompt_hint": (
+            "one surprising, verifiable space fact with a concrete image "
+            "people can picture: a planet, star, moon, astronaut body "
+            "change, or cosmic object. Avoid vague 'space is big' lines."
+        ),
+        "visual_keywords": [
+            "outer space stars",
+            "earth from space",
+            "astronaut",
+            "galaxy nebula",
+            "moon surface",
+        ],
+        "hashtags": "#curiosity #education #spacefacts #science #shorts",
+    },
 ]
 
 
@@ -111,18 +101,13 @@ def slot_for_now(name: str | None = None) -> int:
 
 def pick_topic_for_slot(slot: int = 0):
     """
-    Every slot is the human-body niche. Slot only changes the body system
-    so three daily posts stay on-topic without repeating skin three times.
-    Morning = skin/senses, afternoon = organs, night = bones/nerves.
+    Each daily window posts one niche. Slot 0, 1, 2 rotate through
+    TOPICS, shifted by day-of-year so the order changes.
     """
-    angle = BODY_ANGLES[int(slot) % len(BODY_ANGLES)]
-    return {
-        "niche": CHANNEL_NICHE,
-        "angle": angle["angle"],
-        "prompt_hint": angle["prompt_hint"],
-        "visual_keywords": list(angle["visual_keywords"]),
-        "hashtags": CHANNEL_HASHTAGS,
-    }
+    import datetime
+
+    day_index = datetime.date.today().timetuple().tm_yday
+    return TOPICS[(day_index + int(slot)) % len(TOPICS)]
 
 
 def pick_topic_for_today():
