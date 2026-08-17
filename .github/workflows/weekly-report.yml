@@ -46,5 +46,6 @@ jobs:
             echo "No report changes to commit"
           else
             git commit -m "Weekly YouTube channel report"
+            git pull --rebase origin master
             git push
           fi

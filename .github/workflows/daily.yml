@@ -65,6 +65,7 @@ jobs:
             echo "No used-topic changes"
           else
             git commit -m "Record posted SilentVision topic"
+            git pull --rebase origin master
             git push
           fi
 
