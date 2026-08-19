@@ -60,10 +60,19 @@ def run_pipeline(slot: int = 0):
     script_data = None
     word_timings = None
     duration = 0.0
+    last_good = None
     for attempt in range(LENGTH_RETRIES + 1):
-        script_data, word_timings, duration = _write_script_and_audio(
-            topic, audio_path, length_hint
-        )
+        try:
+            script_data, word_timings, duration = _write_script_and_audio(
+                topic, audio_path, length_hint
+            )
+        except RuntimeError as exc:
+            if last_good is None:
+                raise
+            print(f"Length rewrite failed ({exc}). Using previous draft.")
+            script_data, word_timings, duration = last_good
+            break
+        last_good = (script_data, word_timings, duration)
         if MIN_DURATION_SECONDS <= duration <= MAX_DURATION_SECONDS:
             break
         length_hint = (
@@ -76,10 +85,14 @@ def run_pipeline(slot: int = 0):
             f"{duration:.1f}s is outside {MIN_DURATION_SECONDS}-{MAX_DURATION_SECONDS}s"
         )
     else:
-        raise RuntimeError(
-            f"Narration is {duration:.1f}s, need {MIN_DURATION_SECONDS}-"
-            f"{MAX_DURATION_SECONDS}s. Not uploading a short Short."
-        )
+        if last_good is None:
+            raise RuntimeError("No narration draft was produced.")
+        script_data, word_timings, duration = last_good
+        if not (MIN_DURATION_SECONDS <= duration <= MAX_DURATION_SECONDS):
+            raise RuntimeError(
+                f"Narration is {duration:.1f}s, need {MIN_DURATION_SECONDS}-"
+                f"{MAX_DURATION_SECONDS}s. Not uploading a short Short."
+            )
 
     clips_dir = os.path.join(WORKDIR, "clips")
     print("Fetching stock clips...")

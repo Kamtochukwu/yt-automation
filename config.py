@@ -119,7 +119,8 @@ VIDEO_WIDTH = 1080
 VIDEO_HEIGHT = 1920  # vertical, for Shorts
 TARGET_DURATION_SECONDS = 45
 MIN_DURATION_SECONDS = 40
-MAX_DURATION_SECONDS = 52
+# 55s is TTS jitter only. GuyNeural can land 1-3s past 52 on a 130-word read.
+MAX_DURATION_SECONDS = 55
 # Spoken at the end of every Short. Captions follow the voice.
 END_CTA = "Follow this channel if you enjoy this kind of stuff."
 FONT_SIZE = 70

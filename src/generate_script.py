@@ -124,25 +124,42 @@ def generate_script(topic: dict, length_hint: str = "") -> dict:
 
     last_error = None
     data = None
-    for attempt in range(SCRIPT_ATTEMPTS):
-        model = GROQ_MODELS[attempt % len(GROQ_MODELS)]
-        extra = ""
-        if attempt > 0:
-            extra = (
-                f" Previous draft was the wrong length. Rewrite it to "
-                f"{MIN_SCRIPT_WORDS}-{MAX_SCRIPT_WORDS} spoken words including "
-                f"a natural ending. Expand the payoff and twist with concrete "
-                f"detail. Do not pad with filler."
+    best = None
+    best_distance = None
+    target_words = (MIN_SCRIPT_WORDS + MAX_SCRIPT_WORDS) // 2
+
+    def _score_candidate(candidate, model):
+        nonlocal last_error, data, best, best_distance
+        candidate["script"] = _with_cta(candidate.get("script") or "")
+        script = candidate["script"]
+        word_count = len(script.split())
+        print(f"Groq model used: {model} ({word_count} words with CTA)")
+        if not script or not candidate.get("title"):
+            last_error = f"{model} returned empty title or script"
+            print(last_error)
+            return False
+        distance = abs(word_count - target_words)
+        if best is None or distance < best_distance:
+            best = candidate
+            best_distance = distance
+        if word_count < MIN_SCRIPT_WORDS or word_count > MAX_SCRIPT_WORDS:
+            last_error = (
+                f"{model} wrote {word_count} words, "
+                f"need {MIN_SCRIPT_WORDS}-{MAX_SCRIPT_WORDS}"
             )
+            print(last_error)
+            return False
+        data = candidate
+        return True
+
+    def _chat(model, messages, force_json):
         payload = {
             "model": model,
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt + extra},
-            ],
+            "messages": messages,
             "temperature": 0.7,
-            "response_format": {"type": "json_object"},
         }
+        if force_json:
+            payload["response_format"] = {"type": "json_object"}
         req = urllib.request.Request(
             GROQ_API_URL,
             data=json.dumps(payload).encode("utf-8"),
@@ -154,16 +171,45 @@ def generate_script(topic: dict, length_hint: str = "") -> dict:
             },
             method="POST",
         )
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+
+    for attempt in range(SCRIPT_ATTEMPTS):
+        model = GROQ_MODELS[attempt % len(GROQ_MODELS)]
+        extra = ""
+        if attempt > 0:
+            extra = (
+                f" Previous draft was the wrong length. Rewrite it to "
+                f"{MIN_SCRIPT_WORDS}-{MAX_SCRIPT_WORDS} spoken words including "
+                f"a natural ending. Expand the payoff and twist with concrete "
+                f"detail. Do not pad with filler."
+            )
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt + extra},
+        ]
         try:
-            with urllib.request.urlopen(req, timeout=60) as resp:
-                result = json.loads(resp.read().decode("utf-8"))
+            result = _chat(model, messages, force_json=True)
         except urllib.error.HTTPError as exc:
             body = exc.read().decode("utf-8", errors="replace")[:400]
             last_error = f"{exc.code} {exc.reason}: {body}"
             print(f"Groq model {model} failed: {last_error}")
-            continue
+            if "json_validate_failed" not in body:
+                continue
+            try:
+                print(f"Retrying {model} without forced JSON mode")
+                result = _chat(model, messages, force_json=False)
+            except urllib.error.HTTPError as retry_exc:
+                retry_body = retry_exc.read().decode("utf-8", errors="replace")[:400]
+                last_error = f"{retry_exc.code} {retry_exc.reason}: {retry_body}"
+                print(f"Groq model {model} failed: {last_error}")
+                continue
 
-        content = result["choices"][0]["message"]["content"]
+        content = (result["choices"][0]["message"]["content"] or "").strip()
+        if content.startswith("```"):
+            content = content.strip("`")
+            if content.lower().startswith("json"):
+                content = content[4:].strip()
         try:
             candidate = json.loads(content)
         except json.JSONDecodeError as exc:
@@ -171,20 +217,12 @@ def generate_script(topic: dict, length_hint: str = "") -> dict:
             print(last_error)
             continue
 
-        candidate["script"] = _with_cta(candidate.get("script") or "")
-        script = candidate["script"]
-        word_count = len(script.split())
-        print(f"Groq model used: {model} ({word_count} words with CTA)")
-        if word_count < MIN_SCRIPT_WORDS or word_count > MAX_SCRIPT_WORDS:
-            last_error = (
-                f"{model} wrote {word_count} words, "
-                f"need {MIN_SCRIPT_WORDS}-{MAX_SCRIPT_WORDS}"
-            )
-            print(last_error)
-            continue
+        if _score_candidate(candidate, model):
+            break
 
-        data = candidate
-        break
+    if data is None and best is not None:
+        print("Using closest draft after word-count retries")
+        data = best
 
     if data is None:
         raise RuntimeError(
