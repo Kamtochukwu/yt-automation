@@ -24,7 +24,7 @@ permissions:
 jobs:
   post-short:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 40
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -34,8 +34,19 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install ffmpeg
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg imagemagick fonts-dejavu-core
+      # ubuntu-latest already ships ffmpeg + DejaVu. Skip apt unless something
+      # is missing. 2026-08-19 morning died here: Azure Ubuntu mirrors hung
+      # and ate the whole 25m job timeout before python even started.
+      - name: Ensure ffmpeg and caption fonts
+        run: |
+          if command -v ffmpeg >/dev/null && [ -f /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf ]; then
+            echo "ffmpeg and DejaVu already on the runner, skipping apt"
+            ffmpeg -version | head -n 1
+          else
+            echo "Installing ffmpeg / fonts (apt bounded so a mirror hang cannot kill the slot)"
+            sudo timeout 90 apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=15 update
+            sudo timeout 180 apt-get install -y ffmpeg fonts-dejavu-core
+          fi
 
       - name: Allow ImageMagick to render text (MoviePy captions)
         run: |
@@ -70,7 +81,7 @@ jobs:
           fi
 
       - name: Notify phone if the post failed
-        if: failure()
+        if: failure() || cancelled()
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           POST_SLOT: ${{ github.event.inputs.slot || 'auto' }}
