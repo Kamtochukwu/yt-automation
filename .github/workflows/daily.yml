@@ -34,23 +34,21 @@ jobs:
         with:
           python-version: "3.11"
 
-      # ubuntu-latest already ships ffmpeg + DejaVu. Skip apt unless something
-      # is missing. 2026-08-19 morning died here: Azure Ubuntu mirrors hung
-      # and ate the whole 25m job timeout before python even started.
-      - name: Ensure ffmpeg and caption fonts
-        run: |
-          if command -v ffmpeg >/dev/null && [ -f /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf ]; then
-            echo "ffmpeg and DejaVu already on the runner, skipping apt"
-            ffmpeg -version | head -n 1
-          else
-            echo "Installing ffmpeg / fonts (apt bounded so a mirror hang cannot kill the slot)"
-            sudo timeout 90 apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=15 update
-            sudo timeout 180 apt-get install -y ffmpeg fonts-dejavu-core
-          fi
+      # Do not use apt. Azure Ubuntu mirrors hung twice on 2026-08-19
+      # and killed the morning slot before python started.
+      - name: Setup ffmpeg
+        uses: FedericoCarboni/setup-ffmpeg@v3
 
-      - name: Allow ImageMagick to render text (MoviePy captions)
+      - name: Ensure a caption font
         run: |
-          sudo sed -i 's/rights="none" pattern="@\*"/rights="read|write" pattern="@*"/' /etc/ImageMagick-6/policy.xml || true
+          if [ -f /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf ] \
+            || [ -f /usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf ]; then
+            echo "Caption font already present"
+          else
+            sudo mkdir -p /usr/share/fonts/truetype/dejavu
+            sudo curl -fsSL -o /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf \
+              https://github.com/dejavu-fonts/dejavu-fonts/raw/version_2_37/ttf/DejaVuSans-Bold.ttf
+          fi
 
       - name: Install Python dependencies
         run: pip install -r requirements.txt
