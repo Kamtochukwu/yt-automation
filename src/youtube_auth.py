@@ -2,6 +2,7 @@
 
 import json
 import os
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -23,5 +24,14 @@ def get_access_token() -> str:
         method="POST",
         headers={"User-Agent": USER_AGENT},
     )
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return json.loads(resp.read().decode())["access_token"]
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode())["access_token"]
+    except urllib.error.HTTPError as exc:
+        body = exc.read().decode("utf-8", errors="replace")[:800]
+        raise RuntimeError(
+            f"YouTube token refresh failed ({exc.code}): {body}. "
+            "If this is invalid_grant, the Testing-mode refresh token expired. "
+            "Run python src/get_refresh_token.py locally, then update the "
+            "YT_REFRESH_TOKEN GitHub secret."
+        ) from exc
