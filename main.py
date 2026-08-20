@@ -32,6 +32,7 @@ from src.fetch_visuals import fetch_clips
 from src.assemble_video import assemble_video
 from src.notify import notify_posted
 from src.upload_youtube import upload_video
+from src.youtube_auth import get_access_token
 
 LENGTH_RETRIES = 2
 
@@ -47,6 +48,9 @@ def _write_script_and_audio(topic, audio_path, length_hint=""):
 
 
 def run_pipeline(slot: int = 0):
+    print("Checking YouTube login...")
+    get_access_token()
+
     if os.path.exists(WORKDIR):
         shutil.rmtree(WORKDIR)
     os.makedirs(WORKDIR)

@@ -25,33 +25,32 @@ No paid subscriptions required anywhere in this pipeline.
 2. Copy it.
 
 ### YouTube (upload)
-This needs a one-time login on your own computer (Google requires a human
-to approve access once — after that it renews automatically forever).
+This needs a one-time login on your own computer. Keep the OAuth consent
+screen **In production**. If you leave it in Testing, Google kills the
+refresh token after 7 days and uploads fail with `invalid_grant`.
 
 1. Go to https://console.cloud.google.com → create a new project.
-2. In "APIs & Services" → "Library", enable **YouTube Data API v3**.
-3. In "APIs & Services" → "Credentials" → "Create Credentials" →
+2. In "APIs & Services" → "Library", enable **YouTube Data API v3**
+   and **YouTube Analytics API**.
+3. In "APIs & Services" → "OAuth consent screen", user type **External**,
+   then **Publish app** (Production). Skip Google verification. This is a
+   personal Desktop uploader for your own channel. The unverified-app
+   warning is expected. Do not leave the screen in Testing.
+4. In "APIs & Services" → "Credentials" → "Create Credentials" →
    "OAuth client ID" → Application type: **Desktop app**.
-4. Download the JSON, rename it `client_secret.json`.
-5. On your own machine (not in CI):
+5. Download the JSON, rename it `client_secret.json`.
+6. On your own machine (not in CI):
    ```
    pip install google-auth-oauthlib
    python src/get_refresh_token.py
    ```
-   This opens a browser — log in with the YouTube channel you want to post
-   to, approve access. It will print:
-   ```
-   YT_CLIENT_ID     = ...
-   YT_CLIENT_SECRET = ...
-   YT_REFRESH_TOKEN = ...
-   ```
-   Save these three values.
+   This opens a browser. Log in with the YouTube channel you want to post
+   to. If Google shows an unverified-app warning, click Advanced → Go to
+   the app. The script writes `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, and
+   `YT_REFRESH_TOKEN` into `.env`.
 
-> Note: Google's OAuth consent screen may show an "unverified app" warning
-> since this is your own personal script — click "Advanced" → "Go to
-> [app name] (unsafe)" to proceed. This is normal for personal-use apps and
-> doesn't require Google's review process as long as you keep it in
-> "Testing" mode with your own account added as a test user.
+After any new login, copy `YT_REFRESH_TOKEN` into the GitHub Actions
+secret of the same name.
 
 ---
 
