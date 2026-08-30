@@ -49,11 +49,12 @@ jobs:
             echo "ffmpeg download attempt $i failed"
             sleep $((i * 3))
           done
-          tar -xJf /tmp/ffmpeg.tar.xz -C /tmp
-          bin_dir="$(find /tmp -maxdepth 3 -type d -name bin | head -n 1)"
+          mkdir -p /tmp/ffmpeg-extract
+          tar -xJf /tmp/ffmpeg.tar.xz -C /tmp/ffmpeg-extract
+          bin_dir="$(find /tmp/ffmpeg-extract -type d -name bin -print -quit)"
           sudo install -m 755 "$bin_dir/ffmpeg" /usr/local/bin/ffmpeg
           sudo install -m 755 "$bin_dir/ffprobe" /usr/local/bin/ffprobe
-          ffmpeg -version | head -n 1
+          ffmpeg -version
 
       - name: Ensure a caption font
         run: |
