@@ -36,8 +36,24 @@ jobs:
 
       # Do not use apt. Azure Ubuntu mirrors hung twice on 2026-08-19
       # and killed the morning slot before python started.
+      # FedericoCarboni/setup-ffmpeg@v3 now dies with TypeError: fetch failed
+      # on Node 24 runners. Pull a static build from GitHub instead.
       - name: Setup ffmpeg
-        uses: FedericoCarboni/setup-ffmpeg@v3
+        run: |
+          set -euo pipefail
+          url="https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz"
+          for i in 1 2 3 4 5; do
+            if curl -fL --retry 3 --retry-delay 2 -o /tmp/ffmpeg.tar.xz "$url"; then
+              break
+            fi
+            echo "ffmpeg download attempt $i failed"
+            sleep $((i * 3))
+          done
+          tar -xJf /tmp/ffmpeg.tar.xz -C /tmp
+          bin_dir="$(find /tmp -maxdepth 3 -type d -name bin | head -n 1)"
+          sudo install -m 755 "$bin_dir/ffmpeg" /usr/local/bin/ffmpeg
+          sudo install -m 755 "$bin_dir/ffprobe" /usr/local/bin/ffprobe
+          ffmpeg -version | head -n 1
 
       - name: Ensure a caption font
         run: |
