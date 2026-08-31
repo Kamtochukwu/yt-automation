@@ -29,6 +29,30 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      # GitHub can start a scheduled job hours late. Clock-based "auto"
+      # then flips morning into afternoon (and afternoon into night).
+      # Bind each cron to its window so lag cannot change the niche.
+      - name: Resolve post slot
+        id: slot
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+          INPUT_SLOT: ${{ github.event.inputs.slot }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT_NAME" = "schedule" ]; then
+            case "$EVENT_SCHEDULE" in
+              "0 7 * * *") slot=morning ;;
+              "0 14 * * *") slot=afternoon ;;
+              "0 20 * * *") slot=night ;;
+              *) slot=auto ;;
+            esac
+          else
+            slot="${INPUT_SLOT:-auto}"
+          fi
+          echo "slot=$slot" >> "$GITHUB_OUTPUT"
+          echo "Post slot: $slot (event=$EVENT_NAME schedule=${EVENT_SCHEDULE:-none})"
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -78,7 +102,7 @@ jobs:
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-          POST_SLOT: ${{ github.event.inputs.slot || 'auto' }}
+          POST_SLOT: ${{ steps.slot.outputs.slot }}
         run: python main.py
 
       - name: Save used topics
@@ -99,5 +123,5 @@ jobs:
         if: failure() || cancelled()
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-          POST_SLOT: ${{ github.event.inputs.slot || 'auto' }}
+          POST_SLOT: ${{ steps.slot.outputs.slot }}
         run: python -c "from src.notify import notify_failed; notify_failed()"
