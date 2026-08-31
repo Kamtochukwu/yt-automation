@@ -1,118 +1,218 @@
 {
-  "generated_at": "2026-08-24T15:38:57.596043+00:00",
+  "generated_at": "2026-08-31T20:28:10.327094+00:00",
   "period": {
-    "week_start": "2026-08-17",
-    "month_start": "2026-07-27",
-    "end": "2026-08-23"
+    "week_start": "2026-08-24",
+    "month_start": "2026-08-03",
+    "end": "2026-08-30"
   },
   "channel": {
     "id": "UCPd9S8PyrN_w9kZ9DZ5nXJA",
     "title": "SilentVision ",
-    "subscribers": 85,
+    "subscribers": 90,
     "hidden_subscribers": false,
-    "total_views": 49909,
-    "video_count": 93
+    "total_views": 54541,
+    "video_count": 103
   },
   "last_7_days": {
-    "views": 4179,
-    "watch_minutes": 1144,
-    "subs_gained": 15,
+    "views": 3970,
+    "watch_minutes": 922,
+    "subs_gained": 8,
     "subs_lost": 1,
-    "likes": 120,
-    "comments": 3,
-    "shares": 4,
-    "avg_view_seconds": 27,
-    "avg_view_percent": 56.4
+    "likes": 90,
+    "comments": 1,
+    "shares": 1,
+    "avg_view_seconds": 22,
+    "avg_view_percent": 45.6
   },
   "last_28_days": {
-    "views": 12522,
-    "watch_minutes": 2208,
-    "subs_gained": 27,
-    "subs_lost": 4
+    "views": 18522,
+    "watch_minutes": 3827,
+    "subs_gained": 42,
+    "subs_lost": 5
   },
   "top_videos": [
     {
-      "id": "xgpxa4gkyUw",
-      "title": "Goblin Shark: The Deep\u2011Sea Predator That Shoots Its Jaw",
-      "views": 978,
-      "watch_minutes": 433,
-      "avg_view_percent": 87.8,
-      "likes": 28,
-      "url": "https://www.youtube.com/watch?v=xgpxa4gkyUw"
+      "id": "d78XF_ZNwgo",
+      "title": "The Shrimp That Fires a Sun\u2011Hot Bubble",
+      "views": 1099,
+      "watch_minutes": 257,
+      "avg_view_percent": 37.6,
+      "likes": 16,
+      "url": "https://www.youtube.com/watch?v=d78XF_ZNwgo"
     },
     {
-      "id": "pc2QlEaEJJk",
-      "title": "The Yeti Crab: Deep\u2011Sea Farmer with Bacterial Gardens",
-      "views": 965,
-      "watch_minutes": 227,
-      "avg_view_percent": 43.0,
-      "likes": 36,
-      "url": "https://www.youtube.com/watch?v=pc2QlEaEJJk"
-    },
-    {
-      "id": "eBnKXvvFvnM",
-      "title": "The Fish with a See-Through Head That Turns Its Eyes",
-      "views": 589,
-      "watch_minutes": 153,
-      "avg_view_percent": 50.8,
-      "likes": 10,
-      "url": "https://www.youtube.com/watch?v=eBnKXvvFvnM"
-    },
-    {
-      "id": "FavMcSE6OG4",
-      "title": "The SHOCKING Truth About Venus' Day Longer Than Its Year",
-      "views": 509,
-      "watch_minutes": 70,
-      "avg_view_percent": 31.3,
-      "likes": 8,
-      "url": "https://www.youtube.com/watch?v=FavMcSE6OG4"
-    },
-    {
-      "id": "QtMLpCgCpRQ",
-      "title": "The SHOCKING Reason Venus Spins Backwards",
-      "views": 305,
-      "watch_minutes": 90,
+      "id": "q78YFo7v_oQ",
+      "title": "The Venomous Mammal That Outsmarts Snakes",
+      "views": 1004,
+      "watch_minutes": 360,
       "avg_view_percent": 68.6,
-      "likes": 10,
-      "url": "https://www.youtube.com/watch?v=QtMLpCgCpRQ"
+      "likes": 23,
+      "url": "https://www.youtube.com/watch?v=q78YFo7v_oQ"
     },
     {
-      "id": "JVJsAv40xss",
-      "title": "The SHOCKING Secret: Your Stomach Eats Itself Every Week",
-      "views": 173,
-      "watch_minutes": 19,
-      "avg_view_percent": 26.0,
-      "likes": 3,
-      "url": "https://www.youtube.com/watch?v=JVJsAv40xss"
+      "id": "xZborx2Jc8U",
+      "title": "A Venus Day Longer Than Its Year \u2013 Shocking Truth",
+      "views": 517,
+      "watch_minutes": 73,
+      "avg_view_percent": 32.7,
+      "likes": 17,
+      "url": "https://www.youtube.com/watch?v=xZborx2Jc8U"
     },
     {
-      "id": "Vr2e6SU0EeI",
-      "title": "The SHOCKING Height of Mars' Giant Volcano",
-      "views": 167,
-      "watch_minutes": 53,
-      "avg_view_percent": 55.5,
+      "id": "mIc7kVn0lfg",
+      "title": "The Day That Outlasts A Year: Venus\u2019s Crazy Rotation",
+      "views": 412,
+      "watch_minutes": 88,
+      "avg_view_percent": 40.0,
+      "likes": 13,
+      "url": "https://www.youtube.com/watch?v=mIc7kVn0lfg"
+    },
+    {
+      "id": "Y5nGmUmwMxY",
+      "title": "The Stomach's Secret: It Rebuilds Itself Every Few Days",
+      "views": 338,
+      "watch_minutes": 48,
+      "avg_view_percent": 35.5,
       "likes": 8,
-      "url": "https://www.youtube.com/watch?v=Vr2e6SU0EeI"
+      "url": "https://www.youtube.com/watch?v=Y5nGmUmwMxY"
     },
     {
-      "id": "xzvLaOC1cdc",
-      "title": "The Glass Frog: Transparent Heart and Secret Camouflage",
-      "views": 101,
-      "watch_minutes": 13,
-      "avg_view_percent": 32.6,
-      "likes": 0,
-      "url": "https://www.youtube.com/watch?v=xzvLaOC1cdc"
+      "id": "wAQhtVdeA4A",
+      "title": "The Hidden Hole in Your Vision You Never Notice",
+      "views": 173,
+      "watch_minutes": 22,
+      "avg_view_percent": 47.8,
+      "likes": 3,
+      "url": "https://www.youtube.com/watch?v=wAQhtVdeA4A"
+    },
+    {
+      "id": "WoK7mT5Uk50",
+      "title": "The Icefish: Transparent Blood in Antarctica's Frozen Depths",
+      "views": 145,
+      "watch_minutes": 21,
+      "avg_view_percent": 32.4,
+      "likes": 6,
+      "url": "https://www.youtube.com/watch?v=WoK7mT5Uk50"
+    },
+    {
+      "id": "0kGRKNffdZA",
+      "title": "Why Venus Rises in the West and Its Day Beats Its Year",
+      "views": 86,
+      "watch_minutes": 11,
+      "avg_view_percent": 24.8,
+      "likes": 1,
+      "url": "https://www.youtube.com/watch?v=0kGRKNffdZA"
     }
   ],
   "analytics_error": null,
   "recent_uploads": [
     {
+      "id": "4M8Qr6SjSZM",
+      "title": "The Brain\u2019s Hidden Night\u2011Time Street Cleaner",
+      "published_at": "2026-08-31T19:50:01Z",
+      "duration_seconds": 46,
+      "views": 6,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=4M8Qr6SjSZM"
+    },
+    {
+      "id": "0HnbkiO5d0M",
+      "title": "The Thorny Dragon\u2019s Secret Water\u2011Collecting Skin",
+      "published_at": "2026-08-31T12:55:29Z",
+      "duration_seconds": 52,
+      "views": 620,
+      "likes": 5,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=0HnbkiO5d0M"
+    },
+    {
+      "id": "wAQhtVdeA4A",
+      "title": "The Hidden Hole in Your Vision You Never Notice",
+      "published_at": "2026-08-27T18:10:16Z",
+      "duration_seconds": 48,
+      "views": 171,
+      "likes": 3,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=wAQhtVdeA4A"
+    },
+    {
+      "id": "WoK7mT5Uk50",
+      "title": "The Icefish: Transparent Blood in Antarctica's Frozen Depths",
+      "published_at": "2026-08-26T22:43:44Z",
+      "duration_seconds": 53,
+      "views": 146,
+      "likes": 6,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=WoK7mT5Uk50"
+    },
+    {
+      "id": "0kGRKNffdZA",
+      "title": "Why Venus Rises in the West and Its Day Beats Its Year",
+      "published_at": "2026-08-26T14:47:00Z",
+      "duration_seconds": 47,
+      "views": 86,
+      "likes": 1,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=0kGRKNffdZA"
+    },
+    {
+      "id": "iGMzvcPjmM4",
+      "title": "The Hidden Heart\u2011Breath Sync That Controls Your Pulse",
+      "published_at": "2026-08-26T07:48:14Z",
+      "duration_seconds": 49,
+      "views": 49,
+      "likes": 2,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=iGMzvcPjmM4"
+    },
+    {
+      "id": "xZborx2Jc8U",
+      "title": "A Venus Day Longer Than Its Year \u2013 Shocking Truth",
+      "published_at": "2026-08-25T20:26:33Z",
+      "duration_seconds": 46,
+      "views": 517,
+      "likes": 17,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=xZborx2Jc8U"
+    },
+    {
+      "id": "aWf6ak7Q7Ss",
+      "title": "The SHOCKING Power of Your Heart's Blood Cannon",
+      "published_at": "2026-08-25T14:47:09Z",
+      "duration_seconds": 42,
+      "views": 17,
+      "likes": 1,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=aWf6ak7Q7Ss"
+    },
+    {
+      "id": "d78XF_ZNwgo",
+      "title": "The Shrimp That Fires a Sun\u2011Hot Bubble",
+      "published_at": "2026-08-25T07:46:52Z",
+      "duration_seconds": 49,
+      "views": 1099,
+      "likes": 16,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=d78XF_ZNwgo"
+    },
+    {
+      "id": "Y5nGmUmwMxY",
+      "title": "The Stomach's Secret: It Rebuilds Itself Every Few Days",
+      "published_at": "2026-08-24T20:27:06Z",
+      "duration_seconds": 45,
+      "views": 338,
+      "likes": 8,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=Y5nGmUmwMxY"
+    },
+    {
       "id": "q78YFo7v_oQ",
       "title": "The Venomous Mammal That Outsmarts Snakes",
       "published_at": "2026-08-24T14:44:43Z",
       "duration_seconds": 52,
-      "views": 224,
-      "likes": 10,
+      "views": 1005,
+      "likes": 23,
       "comments": 0,
       "url": "https://www.youtube.com/watch?v=q78YFo7v_oQ"
     },
@@ -121,110 +221,10 @@
       "title": "The Day That Outlasts A Year: Venus\u2019s Crazy Rotation",
       "published_at": "2026-08-24T08:02:18Z",
       "duration_seconds": 54,
-      "views": 297,
-      "likes": 11,
-      "comments": 1,
-      "url": "https://www.youtube.com/watch?v=mIc7kVn0lfg"
-    },
-    {
-      "id": "Jdqbt9D2w-w",
-      "title": "The Solenodon: Caribbean\u2019s Ancient Venomous Mammal",
-      "published_at": "2026-08-23T20:20:05Z",
-      "duration_seconds": 53,
-      "views": 387,
+      "views": 412,
       "likes": 13,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=Jdqbt9D2w-w"
-    },
-    {
-      "id": "4MONc7nPkmA",
-      "title": "The SHOCKING Reason Venus Sunrises Come From the West",
-      "published_at": "2026-08-23T14:25:59Z",
-      "duration_seconds": 48,
-      "views": 264,
-      "likes": 5,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=4MONc7nPkmA"
-    },
-    {
-      "id": "P2bR9RRp0h0",
-      "title": "The SHOCKING Reason Bright Light Makes You Sneeze",
-      "published_at": "2026-08-23T07:37:05Z",
-      "duration_seconds": 46,
-      "views": 136,
-      "likes": 1,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=P2bR9RRp0h0"
-    },
-    {
-      "id": "Qm7Vpke53MQ",
-      "title": "The Secret Blood Pump Inside Your Body That Powers Sprints",
-      "published_at": "2026-08-22T14:23:25Z",
-      "duration_seconds": 47,
-      "views": 16,
-      "likes": 2,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=Qm7Vpke53MQ"
-    },
-    {
-      "id": "8LUwC9i3xVo",
-      "title": "The Venomous Mammal That Looks Like a Shrew",
-      "published_at": "2026-08-22T07:34:34Z",
-      "duration_seconds": 46,
-      "views": 1152,
-      "likes": 35,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=8LUwC9i3xVo"
-    },
-    {
-      "id": "J30guBC8jGg",
-      "title": "The Astonishing Regrowth Power of the Axolotl",
-      "published_at": "2026-08-21T14:38:55Z",
-      "duration_seconds": 51,
-      "views": 89,
-      "likes": 5,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=J30guBC8jGg"
-    },
-    {
-      "id": "QtMLpCgCpRQ",
-      "title": "The SHOCKING Reason Venus Spins Backwards",
-      "published_at": "2026-08-21T07:45:35Z",
-      "duration_seconds": 47,
-      "views": 347,
-      "likes": 10,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=QtMLpCgCpRQ"
-    },
-    {
-      "id": "pc2QlEaEJJk",
-      "title": "The Yeti Crab: Deep\u2011Sea Farmer with Bacterial Gardens",
-      "published_at": "2026-08-20T21:26:43Z",
-      "duration_seconds": 55,
-      "views": 990,
-      "likes": 37,
-      "comments": 1,
-      "url": "https://www.youtube.com/watch?v=pc2QlEaEJJk"
-    },
-    {
-      "id": "FavMcSE6OG4",
-      "title": "The SHOCKING Truth About Venus' Day Longer Than Its Year",
-      "published_at": "2026-08-20T21:19:56Z",
-      "duration_seconds": 47,
-      "views": 518,
-      "likes": 8,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=FavMcSE6OG4"
-    },
-    {
-      "id": "uctXBxOqxHc",
-      "title": "The SHOCKING Truth About Your Heart's Independent Beat",
-      "published_at": "2026-08-20T07:42:57Z",
-      "duration_seconds": 46,
-      "views": 20,
-      "likes": 2,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=uctXBxOqxHc"
+      "comments": 2,
+      "url": "https://www.youtube.com/watch?v=mIc7kVn0lfg"
     }
   ]
 }
