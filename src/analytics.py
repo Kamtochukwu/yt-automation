@@ -14,7 +14,7 @@ import urllib.request
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from src.youtube_auth import USER_AGENT, get_access_token
+from src.youtube_auth import USER_AGENT, get_access_token, require_expected_channel
 
 DATA_API = "https://www.googleapis.com/youtube/v3"
 ANALYTICS_API = "https://youtubeanalytics.googleapis.com/v2/reports"
@@ -110,7 +110,7 @@ def _iso_duration_seconds(value: str) -> int:
 
 def collect_snapshot() -> dict:
     token = get_access_token()
-    channel = _channel(token)
+    channel = require_expected_channel(token)
     stats = channel.get("statistics", {})
     snippet = channel.get("snippet", {})
     uploads = (
