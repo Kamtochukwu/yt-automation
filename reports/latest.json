@@ -1,230 +1,230 @@
 {
-  "generated_at": "2026-09-28T20:55:32.419452+00:00",
+  "generated_at": "2026-10-05T21:43:17.827860+00:00",
   "period": {
-    "week_start": "2026-09-21",
-    "month_start": "2026-08-31",
-    "end": "2026-09-27"
+    "week_start": "2026-09-28",
+    "month_start": "2026-09-07",
+    "end": "2026-10-04"
   },
   "channel": {
     "id": "UCPd9S8PyrN_w9kZ9DZ5nXJA",
     "title": "SilentVision ",
-    "subscribers": 123,
+    "subscribers": 124,
     "hidden_subscribers": false,
-    "total_views": 69620,
-    "video_count": 186
+    "total_views": 69760,
+    "video_count": 207
   },
   "last_7_days": {
-    "views": 3146,
-    "watch_minutes": 762,
-    "subs_gained": 8,
+    "views": 114,
+    "watch_minutes": 16,
+    "subs_gained": 1,
     "subs_lost": 0,
-    "likes": 89,
-    "comments": 1,
-    "shares": 0,
-    "avg_view_seconds": 24,
-    "avg_view_percent": 51.1
+    "likes": 0,
+    "comments": 0,
+    "shares": 1,
+    "avg_view_seconds": 16,
+    "avg_view_percent": 34.0
   },
   "last_28_days": {
-    "views": 15119,
-    "watch_minutes": 3164,
-    "subs_gained": 36,
-    "subs_lost": 3
+    "views": 10491,
+    "watch_minutes": 2394,
+    "subs_gained": 23,
+    "subs_lost": 0
   },
   "top_videos": [
     {
-      "id": "rUw0sblbi50",
-      "title": "The Solenodon: Venomous Mammal That Bites Like a Snake",
-      "views": 1140,
-      "watch_minutes": 359,
-      "avg_view_percent": 57.8,
-      "likes": 31,
-      "url": "https://www.youtube.com/watch?v=rUw0sblbi50"
-    },
-    {
-      "id": "Nb2uYOusNAM",
-      "title": "The Saiga Antelope\u2019s Hidden Desert Breath Filter",
-      "views": 632,
-      "watch_minutes": 180,
-      "avg_view_percent": 60.4,
-      "likes": 25,
-      "url": "https://www.youtube.com/watch?v=Nb2uYOusNAM"
-    },
-    {
-      "id": "dLEHZ4lrGyE",
-      "title": "The SHOCKING Reason Your Yawns Cool Your Brain",
-      "views": 500,
-      "watch_minutes": 51,
-      "avg_view_percent": 34.3,
-      "likes": 6,
-      "url": "https://www.youtube.com/watch?v=dLEHZ4lrGyE"
-    },
-    {
-      "id": "EdyAZvaMZ9M",
-      "title": "The Mouse That Sheds Skin and Heals Without Scars",
-      "views": 476,
-      "watch_minutes": 114,
-      "avg_view_percent": 39.0,
-      "likes": 16,
-      "url": "https://www.youtube.com/watch?v=EdyAZvaMZ9M"
-    },
-    {
-      "id": "GKx2PiJny9c",
-      "title": "The SHOCKING Reason Your Ice Cream Gives You a Brain Freeze",
-      "views": 293,
-      "watch_minutes": 40,
-      "avg_view_percent": 40.7,
-      "likes": 6,
-      "url": "https://www.youtube.com/watch?v=GKx2PiJny9c"
-    },
-    {
-      "id": "Fcb5AT3thlw",
-      "title": "The Secret Muscle That Silences Sudden Explosions",
-      "views": 33,
-      "watch_minutes": 4,
-      "avg_view_percent": 26.9,
-      "likes": 1,
-      "url": "https://www.youtube.com/watch?v=Fcb5AT3thlw"
-    },
-    {
-      "id": "S1iuVaCMzpQ",
-      "title": "The Barreleye Fish: Nature\u2019s Transparent Periscope",
-      "views": 15,
-      "watch_minutes": 2,
-      "avg_view_percent": 93.0,
-      "likes": 1,
-      "url": "https://www.youtube.com/watch?v=S1iuVaCMzpQ"
-    },
-    {
-      "id": "kL_3dLGNSus",
-      "title": "Why a Mercury Day Is Longer Than Its Year",
-      "views": 10,
-      "watch_minutes": 1,
-      "avg_view_percent": 49.8,
+      "id": "xImY1rm8XFs",
+      "title": "The Anglerfish Male That Lives Inside Its Mate",
+      "views": 23,
+      "watch_minutes": 3,
+      "avg_view_percent": 36.0,
       "likes": 0,
-      "url": "https://www.youtube.com/watch?v=kL_3dLGNSus"
+      "url": "https://www.youtube.com/watch?v=xImY1rm8XFs"
+    },
+    {
+      "id": "8RHiC-OMpsw",
+      "title": "The Hagfish: Nature\u2019s Slime\u2011Spitting Escape Artist",
+      "views": 14,
+      "watch_minutes": 2,
+      "avg_view_percent": 32.6,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=8RHiC-OMpsw"
+    },
+    {
+      "id": "NTAvnQVzRBU",
+      "title": "The SHOCKING Venom of a Living Dinosaur: Solenodon Secrets",
+      "views": 8,
+      "watch_minutes": 0,
+      "avg_view_percent": 13.0,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=NTAvnQVzRBU"
+    },
+    {
+      "id": "wnXZDjEu0xg",
+      "title": "The Pistol Shrimp: Tiny Killer with Sun\u2011Hot Bubbles",
+      "views": 6,
+      "watch_minutes": 0,
+      "avg_view_percent": 12.4,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=wnXZDjEu0xg"
+    },
+    {
+      "id": "4SdlxZMVcOg",
+      "title": "The Hidden Rock Inside Your Head That Controls Balance",
+      "views": 5,
+      "watch_minutes": 1,
+      "avg_view_percent": 72.0,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=4SdlxZMVcOg"
+    },
+    {
+      "id": "zlB5wb0A-0c",
+      "title": "Mercury\u2019s Frozen Secret: Ice in the Sun\u2011Scorched Planet",
+      "views": 4,
+      "watch_minutes": 0,
+      "avg_view_percent": 34.3,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=zlB5wb0A-0c"
+    },
+    {
+      "id": "IY3onZh6JCQ",
+      "title": "The SHOCKING Truth About Enceladus' Ice Geysers",
+      "views": 4,
+      "watch_minutes": 0,
+      "avg_view_percent": 24.4,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=IY3onZh6JCQ"
+    },
+    {
+      "id": "WldrTRzuvxs",
+      "title": "The Yeti Crab: Farming Bacteria on a Living Furnace",
+      "views": 4,
+      "watch_minutes": 0,
+      "avg_view_percent": 8.8,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=WldrTRzuvxs"
     }
   ],
   "analytics_error": null,
   "recent_uploads": [
     {
-      "id": "KLPJ87BEoQc",
-      "title": "The Sun's Secret Mass Loss Is Moving Earth Away",
-      "published_at": "2026-09-28T20:24:51Z",
-      "duration_seconds": 48,
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=KLPJ87BEoQc"
-    },
-    {
-      "id": "Gbzau6NK8ms",
-      "title": "Your Brain Hides a Blind Spot You Never Notice",
-      "published_at": "2026-09-28T15:16:32Z",
-      "duration_seconds": 45,
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=Gbzau6NK8ms"
-    },
-    {
-      "id": "vBum_ytcXRk",
-      "title": "Why a Venusian Day Outlasts Its Entire Year",
-      "published_at": "2026-09-27T22:48:58Z",
-      "duration_seconds": 52,
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=vBum_ytcXRk"
-    },
-    {
-      "id": "cKoRTOccwXg",
-      "title": "The Shocking Truth About Your Brain's Nighttime Memory Rewrite",
-      "published_at": "2026-09-27T18:03:16Z",
+      "id": "jt8Yz5RvYQc",
+      "title": "The Yeti Crab: Ocean\u2019s Living Food Garden",
+      "published_at": "2026-10-05T21:28:11Z",
       "duration_seconds": 50,
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=cKoRTOccwXg"
+      "url": "https://www.youtube.com/watch?v=jt8Yz5RvYQc"
     },
     {
-      "id": "wnXZDjEu0xg",
-      "title": "The Pistol Shrimp: Tiny Killer with Sun\u2011Hot Bubbles",
-      "published_at": "2026-09-27T12:58:31Z",
-      "duration_seconds": 53,
-      "views": 4,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=wnXZDjEu0xg"
-    },
-    {
-      "id": "e2srmGk0_zA",
-      "title": "The Hidden Blind Spot Your Brain Erases Every Moment",
-      "published_at": "2026-09-26T22:24:07Z",
-      "duration_seconds": 47,
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=e2srmGk0_zA"
-    },
-    {
-      "id": "zQEC169jfcI",
-      "title": "The SHOCKING Secret of the Icefish\u2019s Invisible Blood",
-      "published_at": "2026-09-26T17:35:04Z",
-      "duration_seconds": 49,
-      "views": 1,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=zQEC169jfcI"
-    },
-    {
-      "id": "LhafV3viUe8",
-      "title": "Why the Sun Rises in the West on Venus",
-      "published_at": "2026-09-26T12:14:02Z",
-      "duration_seconds": 49,
-      "views": 6,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=LhafV3viUe8"
-    },
-    {
-      "id": "Hkzq6OoXFFw",
-      "title": "The SHOCKING Venomous Bite of the Solenodon",
-      "published_at": "2026-09-25T23:05:31Z",
-      "duration_seconds": 49,
-      "views": 1,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=Hkzq6OoXFFw"
-    },
-    {
-      "id": "PoOWr5gvntc",
-      "title": "The SHOCKING Ice Geysers That Tower Over Enceladus",
-      "published_at": "2026-09-25T18:14:16Z",
-      "duration_seconds": 47,
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=PoOWr5gvntc"
-    },
-    {
-      "id": "UqHsDnieR50",
-      "title": "The Hidden Magnet Inside Your Heart Beats Stronger Than Earth",
-      "published_at": "2026-09-25T12:45:48Z",
+      "id": "vymKF1_erDA",
+      "title": "Why Venus Sees the Sun Rise in the West",
+      "published_at": "2026-10-05T15:50:14Z",
       "duration_seconds": 48,
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=UqHsDnieR50"
+      "url": "https://www.youtube.com/watch?v=vymKF1_erDA"
     },
     {
-      "id": "5pkz218K-6Y",
-      "title": "Why a Venus Day Outlasts Its Whole Year",
-      "published_at": "2026-09-24T23:00:19Z",
-      "duration_seconds": 54,
+      "id": "LuGuLkaQqfA",
+      "title": "The Barreleye Fish: Transparent Head, Hidden Eyes",
+      "published_at": "2026-10-04T22:44:38Z",
+      "duration_seconds": 50,
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=5pkz218K-6Y"
+      "url": "https://www.youtube.com/watch?v=LuGuLkaQqfA"
+    },
+    {
+      "id": "429ENBUquA4",
+      "title": "Why a Venus Day Outlasts Its Whole Year",
+      "published_at": "2026-10-04T18:00:34Z",
+      "duration_seconds": 50,
+      "views": 3,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=429ENBUquA4"
+    },
+    {
+      "id": "0QIbdpnqHaQ",
+      "title": "The Hidden Stones Inside Your Head That Stop You Falling",
+      "published_at": "2026-10-04T13:11:38Z",
+      "duration_seconds": 44,
+      "views": 4,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=0QIbdpnqHaQ"
+    },
+    {
+      "id": "zlB5wb0A-0c",
+      "title": "Mercury\u2019s Frozen Secret: Ice in the Sun\u2011Scorched Planet",
+      "published_at": "2026-10-03T22:41:29Z",
+      "duration_seconds": 51,
+      "views": 7,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=zlB5wb0A-0c"
+    },
+    {
+      "id": "tm7p_YSXprg",
+      "title": "The Silent Tear Factory: Why Your Eyes Never Dry",
+      "published_at": "2026-10-03T17:46:45Z",
+      "duration_seconds": 49,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=tm7p_YSXprg"
+    },
+    {
+      "id": "hBpOR4xthP0",
+      "title": "The Thorny Dragon's Hidden Water Pipe",
+      "published_at": "2026-10-03T12:28:06Z",
+      "duration_seconds": 46,
+      "views": 5,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=hBpOR4xthP0"
+    },
+    {
+      "id": "EWw_HQ8Pj6Q",
+      "title": "The Hidden Blind Spot Your Brain Covers Up",
+      "published_at": "2026-10-02T23:34:05Z",
+      "duration_seconds": 42,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=EWw_HQ8Pj6Q"
+    },
+    {
+      "id": "8RHiC-OMpsw",
+      "title": "The Hagfish: Nature\u2019s Slime\u2011Spitting Escape Artist",
+      "published_at": "2026-10-02T18:53:32Z",
+      "duration_seconds": 48,
+      "views": 23,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=8RHiC-OMpsw"
+    },
+    {
+      "id": "VkZcIw6VO7I",
+      "title": "The SHOCKING Reason Venus Has a Backward Sunrise",
+      "published_at": "2026-10-02T13:47:59Z",
+      "duration_seconds": 52,
+      "views": 1,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=VkZcIw6VO7I"
+    },
+    {
+      "id": "NTAvnQVzRBU",
+      "title": "The SHOCKING Venom of a Living Dinosaur: Solenodon Secrets",
+      "published_at": "2026-10-01T23:43:12Z",
+      "duration_seconds": 54,
+      "views": 8,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=NTAvnQVzRBU"
     }
   ]
 }
