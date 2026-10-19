@@ -1,230 +1,230 @@
 {
-  "generated_at": "2026-10-12T22:18:26.237820+00:00",
+  "generated_at": "2026-10-19T20:17:31.243387+00:00",
   "period": {
-    "week_start": "2026-10-05",
-    "month_start": "2026-09-14",
-    "end": "2026-10-11"
+    "week_start": "2026-10-12",
+    "month_start": "2026-09-21",
+    "end": "2026-10-18"
   },
   "channel": {
     "id": "UCPd9S8PyrN_w9kZ9DZ5nXJA",
     "title": "SilentVision ",
     "subscribers": 124,
     "hidden_subscribers": false,
-    "total_views": 69846,
-    "video_count": 226
+    "total_views": 69899,
+    "video_count": 245
   },
   "last_7_days": {
-    "views": 74,
-    "watch_minutes": 8,
+    "views": 47,
+    "watch_minutes": 5,
     "subs_gained": 0,
     "subs_lost": 0,
     "likes": 0,
     "comments": 0,
     "shares": 0,
-    "avg_view_seconds": 17,
-    "avg_view_percent": 37.3
+    "avg_view_seconds": 15,
+    "avg_view_percent": 32.9
   },
   "last_28_days": {
-    "views": 7378,
-    "watch_minutes": 1780,
-    "subs_gained": 19,
+    "views": 3418,
+    "watch_minutes": 799,
+    "subs_gained": 9,
     "subs_lost": 0
   },
   "top_videos": [
     {
-      "id": "wQi7tNik_uU",
-      "title": "Your Gut's Secret Brain Controls More Than Digestion",
-      "views": 14,
-      "watch_minutes": 0,
-      "avg_view_percent": 0.0,
-      "likes": 0,
-      "url": "https://www.youtube.com/watch?v=wQi7tNik_uU"
-    },
-    {
-      "id": "0QIbdpnqHaQ",
-      "title": "The Hidden Stones Inside Your Head That Stop You Falling",
-      "views": 5,
-      "watch_minutes": 0,
-      "avg_view_percent": 59.2,
-      "likes": 0,
-      "url": "https://www.youtube.com/watch?v=0QIbdpnqHaQ"
-    },
-    {
       "id": "8wMHTFSTFrk",
       "title": "The Hidden Eye Tremor That Stops Your Vision From Fading",
-      "views": 4,
+      "views": 6,
       "watch_minutes": 0,
-      "avg_view_percent": 55.8,
+      "avg_view_percent": 24.8,
       "likes": 0,
       "url": "https://www.youtube.com/watch?v=8wMHTFSTFrk"
     },
     {
-      "id": "EdyAZvaMZ9M",
-      "title": "The Mouse That Sheds Skin and Heals Without Scars",
-      "views": 4,
-      "watch_minutes": 0,
-      "avg_view_percent": 0.0,
-      "likes": 0,
-      "url": "https://www.youtube.com/watch?v=EdyAZvaMZ9M"
-    },
-    {
-      "id": "mzKZjMhxRmU",
-      "title": "The Yeti Crab: Deep\u2011Sea Gardener Growing Its Own Food",
-      "views": 4,
-      "watch_minutes": 1,
-      "avg_view_percent": 47.2,
-      "likes": 0,
-      "url": "https://www.youtube.com/watch?v=mzKZjMhxRmU"
-    },
-    {
-      "id": "jt8Yz5RvYQc",
-      "title": "The Yeti Crab: Ocean\u2019s Living Food Garden",
+      "id": "jqxt_rXbMyM",
+      "title": "The Sea Cucumber's Shocking Self\u2011Evisceration Survival Trick",
       "views": 3,
       "watch_minutes": 0,
-      "avg_view_percent": 4.4,
+      "avg_view_percent": 30.7,
       "likes": 0,
-      "url": "https://www.youtube.com/watch?v=jt8Yz5RvYQc"
+      "url": "https://www.youtube.com/watch?v=jqxt_rXbMyM"
     },
     {
-      "id": "8RHiC-OMpsw",
-      "title": "The Hagfish: Nature\u2019s Slime\u2011Spitting Escape Artist",
-      "views": 3,
-      "watch_minutes": 0,
-      "avg_view_percent": 17.1,
-      "likes": 0,
-      "url": "https://www.youtube.com/watch?v=8RHiC-OMpsw"
-    },
-    {
-      "id": "sH9oexfOlf4",
-      "title": "The Solenodon: Mammal with Snake-like Venom",
+      "id": "rUw0sblbi50",
+      "title": "The Solenodon: Venomous Mammal That Bites Like a Snake",
       "views": 3,
       "watch_minutes": 0,
       "avg_view_percent": 0.0,
       "likes": 0,
-      "url": "https://www.youtube.com/watch?v=sH9oexfOlf4"
+      "url": "https://www.youtube.com/watch?v=rUw0sblbi50"
+    },
+    {
+      "id": "k31duh708zo",
+      "title": "The Yeti Crab: Deep\u2011Sea Farmer With Furry Claws",
+      "views": 3,
+      "watch_minutes": 0,
+      "avg_view_percent": 8.0,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=k31duh708zo"
+    },
+    {
+      "id": "S1iuVaCMzpQ",
+      "title": "The Barreleye Fish: Nature\u2019s Transparent Periscope",
+      "views": 3,
+      "watch_minutes": 0,
+      "avg_view_percent": 0.0,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=S1iuVaCMzpQ"
+    },
+    {
+      "id": "70yQPGP-9GA",
+      "title": "The SHOCKING Venomous Bite of the Caribbean Solenodon",
+      "views": 2,
+      "watch_minutes": 0,
+      "avg_view_percent": 0.0,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=70yQPGP-9GA"
+    },
+    {
+      "id": "c1ZY778RySM",
+      "title": "You Are Born with 300 Pain Sensors in Your Eyes",
+      "views": 2,
+      "watch_minutes": 0,
+      "avg_view_percent": 128.5,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=c1ZY778RySM"
+    },
+    {
+      "id": "aWf6ak7Q7Ss",
+      "title": "The SHOCKING Power of Your Heart's Blood Cannon",
+      "views": 2,
+      "watch_minutes": 0,
+      "avg_view_percent": 2.4,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=aWf6ak7Q7Ss"
     }
   ],
   "analytics_error": null,
   "recent_uploads": [
     {
-      "id": "qyHNJdKn5Zc",
-      "title": "The Hidden Blind Spot Your Eyes Never Reveal",
-      "published_at": "2026-10-11T23:26:17Z",
-      "duration_seconds": 46,
-      "views": 4,
+      "id": "IyX0FYCnQ_c",
+      "title": "The Shocking Truth: Venus\u2019s Day Is Longer Than Its Year",
+      "published_at": "2026-10-19T19:38:04Z",
+      "duration_seconds": 44,
+      "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=qyHNJdKn5Zc"
+      "url": "https://www.youtube.com/watch?v=IyX0FYCnQ_c"
     },
     {
-      "id": "PxdJEzbjn94",
-      "title": "The Lizard That Shoots Blood From Its Eyes",
-      "published_at": "2026-10-11T18:37:34Z",
+      "id": "QoTE8cGGgyk",
+      "title": "The Hidden Self\u2011Cleaning Trick Inside Your Stomach",
+      "published_at": "2026-10-19T14:34:31Z",
+      "duration_seconds": 43,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=QoTE8cGGgyk"
+    },
+    {
+      "id": "DE6S19gO-Vw",
+      "title": "Why Mercury's Day Outlasts Its Year",
+      "published_at": "2026-10-18T22:13:43Z",
       "duration_seconds": 49,
-      "views": 4,
+      "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=PxdJEzbjn94"
+      "url": "https://www.youtube.com/watch?v=DE6S19gO-Vw"
     },
     {
-      "id": "11mESghsVLM",
-      "title": "The Shocking Truth: Venus\u2019s Day Outlasts Its Year",
-      "published_at": "2026-10-11T13:58:29Z",
-      "duration_seconds": 47,
-      "views": 1,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=11mESghsVLM"
-    },
-    {
-      "id": "BM2fNjnCLzg",
-      "title": "The Icefish: Transparent Blood and a Giant Heart",
-      "published_at": "2026-10-10T23:13:30Z",
-      "duration_seconds": 52,
-      "views": 1,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=BM2fNjnCLzg"
-    },
-    {
-      "id": "7A_Vlf3I-7I",
-      "title": "Why a Venus Day Outlasts Its Whole Year",
-      "published_at": "2026-10-10T18:13:07Z",
-      "duration_seconds": 50,
-      "views": 3,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=7A_Vlf3I-7I"
-    },
-    {
-      "id": "8wMHTFSTFrk",
-      "title": "The Hidden Eye Tremor That Stops Your Vision From Fading",
-      "published_at": "2026-10-10T13:33:22Z",
+      "id": "e7E0BfjP-X4",
+      "title": "The Hidden Nose Flip: Why One Nostril Gets Stuffed",
+      "published_at": "2026-10-18T17:05:51Z",
       "duration_seconds": 48,
-      "views": 6,
+      "views": 2,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=8wMHTFSTFrk"
+      "url": "https://www.youtube.com/watch?v=e7E0BfjP-X4"
     },
     {
-      "id": "4ZOGRU3IXpc",
-      "title": "The Moon That Spits Water Taller Than Skyscrapers",
-      "published_at": "2026-10-09T23:51:29Z",
-      "duration_seconds": 53,
-      "views": 1,
+      "id": "8JHBg5dxX0w",
+      "title": "The Solenodon: Caribbean Mammal That Venoms Like a Snake",
+      "published_at": "2026-10-18T12:05:23Z",
+      "duration_seconds": 52,
+      "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=4ZOGRU3IXpc"
+      "url": "https://www.youtube.com/watch?v=8JHBg5dxX0w"
     },
     {
-      "id": "5LYiuHMAgqk",
-      "title": "Your Nose Lies: The Phantom Scent Trick You Never Notice",
-      "published_at": "2026-10-09T19:13:29Z",
+      "id": "ltztMtXUQmA",
+      "title": "The Secret Muscle That Saves Your Hearing Every Second",
+      "published_at": "2026-10-17T22:00:49Z",
       "duration_seconds": 46,
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=5LYiuHMAgqk"
+      "url": "https://www.youtube.com/watch?v=ltztMtXUQmA"
     },
     {
-      "id": "k31duh708zo",
-      "title": "The Yeti Crab: Deep\u2011Sea Farmer With Furry Claws",
-      "published_at": "2026-10-09T14:19:40Z",
+      "id": "3uHHcFQwdK4",
+      "title": "The Antarctic Icefish: Ghostly Blood and Frozen Survival",
+      "published_at": "2026-10-17T16:48:54Z",
+      "duration_seconds": 56,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=3uHHcFQwdK4"
+    },
+    {
+      "id": "n2G4zcYaH5k",
+      "title": "The SHOCKING Truth About Venus' Day Longer Than Its Year",
+      "published_at": "2026-10-17T11:37:20Z",
+      "duration_seconds": 51,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=n2G4zcYaH5k"
+    },
+    {
+      "id": "8oa3gVzx51U",
+      "title": "The Pistol Shrimp: Tiny Assassin With a Sun\u2011Hot Bubble",
+      "published_at": "2026-10-16T22:27:52Z",
+      "duration_seconds": 52,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=8oa3gVzx51U"
+    },
+    {
+      "id": "6iKw-IQfoH8",
+      "title": "Why a Venus Day Is Longer Than Its Year",
+      "published_at": "2026-10-16T17:48:31Z",
+      "duration_seconds": 51,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=6iKw-IQfoH8"
+    },
+    {
+      "id": "FAT-qTvDlXk",
+      "title": "The Hidden Dance of Your Eyes: Why Staring Never Stops",
+      "published_at": "2026-10-16T12:17:47Z",
+      "duration_seconds": 42,
+      "views": 2,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=FAT-qTvDlXk"
+    },
+    {
+      "id": "t-cKiL2dU0Y",
+      "title": "The SHOCKING Truth About Venus: A Year Inside One Day",
+      "published_at": "2026-10-15T22:54:57Z",
       "duration_seconds": 50,
-      "views": 5,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=k31duh708zo"
-    },
-    {
-      "id": "MvTWGz7ZbUg",
-      "title": "The SHOCKING Truth About Venus' Backwards Sunrise",
-      "published_at": "2026-10-09T00:10:32Z",
-      "duration_seconds": 49,
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=MvTWGz7ZbUg"
-    },
-    {
-      "id": "sH9oexfOlf4",
-      "title": "The Solenodon: Mammal with Snake-like Venom",
-      "published_at": "2026-10-08T19:40:56Z",
-      "duration_seconds": 54,
-      "views": 3,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=sH9oexfOlf4"
-    },
-    {
-      "id": "VaAamexa2Wg",
-      "title": "Why a Mercury Day Beats Its Year \u2013 The Solar Day Paradox",
-      "published_at": "2026-10-08T14:33:03Z",
-      "duration_seconds": 54,
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=VaAamexa2Wg"
+      "url": "https://www.youtube.com/watch?v=t-cKiL2dU0Y"
     }
   ]
 }

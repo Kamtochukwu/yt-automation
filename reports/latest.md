@@ -1,53 +1,53 @@
 # Channel progress: SilentVision 
 
-Generated 2026-10-12 22:18:26 UTC. Analytics window ends 2026-10-11 (YouTube lags about a day).
+Generated 2026-10-19 20:17:31 UTC. Analytics window ends 2026-10-18 (YouTube lags about a day).
 
 ## Lifetime totals
 
 - Subscribers: **124** (no change)
-- Total views: **69846** (+86 vs last report)
-- Videos: **226** (+19 vs last report)
+- Total views: **69899** (+53 vs last report)
+- Videos: **245** (+19 vs last report)
 
-## Last 7 days (2026-10-05 to 2026-10-11)
+## Last 7 days (2026-10-12 to 2026-10-18)
 
-- Views: **74**
-- Watch time: **8 minutes**
+- Views: **47**
+- Watch time: **5 minutes**
 - Subscribers: **+0 / -0**
 - Likes: 0  |  Comments: 0  |  Shares: 0
-- Avg view: 17s (37.3% of the video)
+- Avg view: 15s (32.9% of the video)
 
-## Last 28 days (2026-09-14 to 2026-10-11)
+## Last 28 days (2026-09-21 to 2026-10-18)
 
-- Views: **7378**
-- Watch time: **1780 minutes**
-- Subscribers: **+19 / -0**
+- Views: **3418**
+- Watch time: **799 minutes**
+- Subscribers: **+9 / -0**
 
 ## Top videos this week
 
 | Video | Views | Watch min | Avg % | Likes |
 | --- | ---: | ---: | ---: | ---: |
-| [Your Gut's Secret Brain Controls More Than Digestion](https://www.youtube.com/watch?v=wQi7tNik_uU) | 14 | 0 | 0.0 | 0 |
-| [The Hidden Stones Inside Your Head That Stop You Falling](https://www.youtube.com/watch?v=0QIbdpnqHaQ) | 5 | 0 | 59.2 | 0 |
-| [The Hidden Eye Tremor That Stops Your Vision From Fading](https://www.youtube.com/watch?v=8wMHTFSTFrk) | 4 | 0 | 55.8 | 0 |
-| [The Mouse That Sheds Skin and Heals Without Scars](https://www.youtube.com/watch?v=EdyAZvaMZ9M) | 4 | 0 | 0.0 | 0 |
-| [The Yeti Crab: Deep‑Sea Gardener Growing Its Own Food](https://www.youtube.com/watch?v=mzKZjMhxRmU) | 4 | 1 | 47.2 | 0 |
-| [The Yeti Crab: Ocean’s Living Food Garden](https://www.youtube.com/watch?v=jt8Yz5RvYQc) | 3 | 0 | 4.4 | 0 |
-| [The Hagfish: Nature’s Slime‑Spitting Escape Artist](https://www.youtube.com/watch?v=8RHiC-OMpsw) | 3 | 0 | 17.1 | 0 |
-| [The Solenodon: Mammal with Snake-like Venom](https://www.youtube.com/watch?v=sH9oexfOlf4) | 3 | 0 | 0.0 | 0 |
+| [The Hidden Eye Tremor That Stops Your Vision From Fading](https://www.youtube.com/watch?v=8wMHTFSTFrk) | 6 | 0 | 24.8 | 0 |
+| [The Sea Cucumber's Shocking Self‑Evisceration Survival Trick](https://www.youtube.com/watch?v=jqxt_rXbMyM) | 3 | 0 | 30.7 | 0 |
+| [The Solenodon: Venomous Mammal That Bites Like a Snake](https://www.youtube.com/watch?v=rUw0sblbi50) | 3 | 0 | 0.0 | 0 |
+| [The Yeti Crab: Deep‑Sea Farmer With Furry Claws](https://www.youtube.com/watch?v=k31duh708zo) | 3 | 0 | 8.0 | 0 |
+| [The Barreleye Fish: Nature’s Transparent Periscope](https://www.youtube.com/watch?v=S1iuVaCMzpQ) | 3 | 0 | 0.0 | 0 |
+| [The SHOCKING Venomous Bite of the Caribbean Solenodon](https://www.youtube.com/watch?v=70yQPGP-9GA) | 2 | 0 | 0.0 | 0 |
+| [You Are Born with 300 Pain Sensors in Your Eyes](https://www.youtube.com/watch?v=c1ZY778RySM) | 2 | 0 | 128.5 | 0 |
+| [The SHOCKING Power of Your Heart's Blood Cannon](https://www.youtube.com/watch?v=aWf6ak7Q7Ss) | 2 | 0 | 2.4 | 0 |
 
 ## Recent uploads
 
 | Video | Published | Length | Views | Likes | Comments |
 | --- | --- | ---: | ---: | ---: | ---: |
-| [The Hidden Blind Spot Your Eyes Never Reveal](https://www.youtube.com/watch?v=qyHNJdKn5Zc) | 2026-10-11 | 46s | 4 | 0 | 0 |
-| [The Lizard That Shoots Blood From Its Eyes](https://www.youtube.com/watch?v=PxdJEzbjn94) | 2026-10-11 | 49s | 4 | 0 | 0 |
-| [The Shocking Truth: Venus’s Day Outlasts Its Year](https://www.youtube.com/watch?v=11mESghsVLM) | 2026-10-11 | 47s | 1 | 0 | 0 |
-| [The Icefish: Transparent Blood and a Giant Heart](https://www.youtube.com/watch?v=BM2fNjnCLzg) | 2026-10-10 | 52s | 1 | 0 | 0 |
-| [Why a Venus Day Outlasts Its Whole Year](https://www.youtube.com/watch?v=7A_Vlf3I-7I) | 2026-10-10 | 50s | 3 | 0 | 0 |
-| [The Hidden Eye Tremor That Stops Your Vision From Fading](https://www.youtube.com/watch?v=8wMHTFSTFrk) | 2026-10-10 | 48s | 6 | 0 | 0 |
-| [The Moon That Spits Water Taller Than Skyscrapers](https://www.youtube.com/watch?v=4ZOGRU3IXpc) | 2026-10-09 | 53s | 1 | 0 | 0 |
-| [Your Nose Lies: The Phantom Scent Trick You Never Notice](https://www.youtube.com/watch?v=5LYiuHMAgqk) | 2026-10-09 | 46s | 0 | 0 | 0 |
-| [The Yeti Crab: Deep‑Sea Farmer With Furry Claws](https://www.youtube.com/watch?v=k31duh708zo) | 2026-10-09 | 50s | 5 | 0 | 0 |
-| [The SHOCKING Truth About Venus' Backwards Sunrise](https://www.youtube.com/watch?v=MvTWGz7ZbUg) | 2026-10-09 | 49s | 0 | 0 | 0 |
-| [The Solenodon: Mammal with Snake-like Venom](https://www.youtube.com/watch?v=sH9oexfOlf4) | 2026-10-08 | 54s | 3 | 0 | 0 |
-| [Why a Mercury Day Beats Its Year – The Solar Day Paradox](https://www.youtube.com/watch?v=VaAamexa2Wg) | 2026-10-08 | 54s | 0 | 0 | 0 |
+| [The Shocking Truth: Venus’s Day Is Longer Than Its Year](https://www.youtube.com/watch?v=IyX0FYCnQ_c) | 2026-10-19 | 44s | 0 | 0 | 0 |
+| [The Hidden Self‑Cleaning Trick Inside Your Stomach](https://www.youtube.com/watch?v=QoTE8cGGgyk) | 2026-10-19 | 43s | 0 | 0 | 0 |
+| [Why Mercury's Day Outlasts Its Year](https://www.youtube.com/watch?v=DE6S19gO-Vw) | 2026-10-18 | 49s | 0 | 0 | 0 |
+| [The Hidden Nose Flip: Why One Nostril Gets Stuffed](https://www.youtube.com/watch?v=e7E0BfjP-X4) | 2026-10-18 | 48s | 2 | 0 | 0 |
+| [The Solenodon: Caribbean Mammal That Venoms Like a Snake](https://www.youtube.com/watch?v=8JHBg5dxX0w) | 2026-10-18 | 52s | 0 | 0 | 0 |
+| [The Secret Muscle That Saves Your Hearing Every Second](https://www.youtube.com/watch?v=ltztMtXUQmA) | 2026-10-17 | 46s | 0 | 0 | 0 |
+| [The Antarctic Icefish: Ghostly Blood and Frozen Survival](https://www.youtube.com/watch?v=3uHHcFQwdK4) | 2026-10-17 | 56s | 0 | 0 | 0 |
+| [The SHOCKING Truth About Venus' Day Longer Than Its Year](https://www.youtube.com/watch?v=n2G4zcYaH5k) | 2026-10-17 | 51s | 0 | 0 | 0 |
+| [The Pistol Shrimp: Tiny Assassin With a Sun‑Hot Bubble](https://www.youtube.com/watch?v=8oa3gVzx51U) | 2026-10-16 | 52s | 0 | 0 | 0 |
+| [Why a Venus Day Is Longer Than Its Year](https://www.youtube.com/watch?v=6iKw-IQfoH8) | 2026-10-16 | 51s | 0 | 0 | 0 |
+| [The Hidden Dance of Your Eyes: Why Staring Never Stops](https://www.youtube.com/watch?v=FAT-qTvDlXk) | 2026-10-16 | 42s | 2 | 0 | 0 |
+| [The SHOCKING Truth About Venus: A Year Inside One Day](https://www.youtube.com/watch?v=t-cKiL2dU0Y) | 2026-10-15 | 50s | 0 | 0 | 0 |
