@@ -1,230 +1,230 @@
 {
-  "generated_at": "2026-11-09T23:38:31.597487+00:00",
+  "generated_at": "2026-11-16T23:35:00.032864+00:00",
   "period": {
-    "week_start": "2026-11-02",
-    "month_start": "2026-10-12",
-    "end": "2026-11-08"
+    "week_start": "2026-11-09",
+    "month_start": "2026-10-19",
+    "end": "2026-11-15"
   },
   "channel": {
     "id": "UCPd9S8PyrN_w9kZ9DZ5nXJA",
     "title": "SilentVision ",
     "subscribers": 125,
     "hidden_subscribers": false,
-    "total_views": 70125,
-    "video_count": 303
+    "total_views": 70181,
+    "video_count": 320
   },
   "last_7_days": {
-    "views": 75,
-    "watch_minutes": 9,
+    "views": 52,
+    "watch_minutes": 4,
     "subs_gained": 0,
     "subs_lost": 0,
     "likes": 0,
     "comments": 0,
     "shares": 0,
-    "avg_view_seconds": 15,
-    "avg_view_percent": 31.4
+    "avg_view_seconds": 10,
+    "avg_view_percent": 26.1
   },
   "last_28_days": {
-    "views": 270,
-    "watch_minutes": 32,
+    "views": 274,
+    "watch_minutes": 30,
     "subs_gained": 1,
     "subs_lost": 0
   },
   "top_videos": [
     {
-      "id": "SQs6r4SDQQc",
-      "title": "The Venomous Mammal That Outsmarts Snakes",
-      "views": 8,
-      "watch_minutes": 2,
-      "avg_view_percent": 55.2,
-      "likes": 0,
-      "url": "https://www.youtube.com/watch?v=SQs6r4SDQQc"
-    },
-    {
-      "id": "IY3onZh6JCQ",
-      "title": "The SHOCKING Truth About Enceladus' Ice Geysers",
-      "views": 5,
-      "watch_minutes": 0,
-      "avg_view_percent": 35.1,
-      "likes": 0,
-      "url": "https://www.youtube.com/watch?v=IY3onZh6JCQ"
-    },
-    {
       "id": "c1ZY778RySM",
       "title": "You Are Born with 300 Pain Sensors in Your Eyes",
-      "views": 5,
-      "watch_minutes": 0,
-      "avg_view_percent": 0.0,
+      "views": 14,
+      "watch_minutes": 1,
+      "avg_view_percent": 95.5,
       "likes": 0,
       "url": "https://www.youtube.com/watch?v=c1ZY778RySM"
     },
     {
-      "id": "fJpWK1l182c",
-      "title": "The Fish with a Crystal Skull That Sees Through Darkness",
-      "views": 5,
-      "watch_minutes": 1,
-      "avg_view_percent": 67.4,
-      "likes": 0,
-      "url": "https://www.youtube.com/watch?v=fJpWK1l182c"
-    },
-    {
-      "id": "zfk2DTmYQVY",
-      "title": "The Yeti Crab: Deep\u2011Sea Farmer with Glowing Gardens",
-      "views": 4,
+      "id": "1tZHVTvoEWg",
+      "title": "Your Skin Is a Hidden Battery Generating Tiny Electricity",
+      "views": 6,
       "watch_minutes": 0,
-      "avg_view_percent": 3.8,
+      "avg_view_percent": 20.8,
       "likes": 0,
-      "url": "https://www.youtube.com/watch?v=zfk2DTmYQVY"
+      "url": "https://www.youtube.com/watch?v=1tZHVTvoEWg"
     },
     {
-      "id": "TzgJ8OALJPA",
-      "title": "Your Brain's Hidden GPS: How Grid Cells Map Every Step",
-      "views": 4,
-      "watch_minutes": 0,
-      "avg_view_percent": 104.4,
-      "likes": 0,
-      "url": "https://www.youtube.com/watch?v=TzgJ8OALJPA"
-    },
-    {
-      "id": "6ZoSuXBJEtg",
-      "title": "The Hidden Survival Grip Inside Every Newborn",
-      "views": 3,
+      "id": "VlEspGMIsQY",
+      "title": "The Yeti Crab\u2019s Secret: Farming Food on Its Furry Claws",
+      "views": 6,
       "watch_minutes": 0,
       "avg_view_percent": 0.0,
       "likes": 0,
-      "url": "https://www.youtube.com/watch?v=6ZoSuXBJEtg"
+      "url": "https://www.youtube.com/watch?v=VlEspGMIsQY"
     },
     {
-      "id": "S1iuVaCMzpQ",
-      "title": "The Barreleye Fish: Nature\u2019s Transparent Periscope",
+      "id": "01j-DCDL_MU",
+      "title": "The Yeti Crab: Ocean\u2019s Living Farm on Its Claws",
+      "views": 4,
+      "watch_minutes": 0,
+      "avg_view_percent": 3.0,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=01j-DCDL_MU"
+    },
+    {
+      "id": "B1yAQ2fdO9s",
+      "title": "The SHOCKING Truth About Mercury's Two-Year Day",
       "views": 3,
+      "watch_minutes": 0,
+      "avg_view_percent": 51.4,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=B1yAQ2fdO9s"
+    },
+    {
+      "id": "wQi7tNik_uU",
+      "title": "Your Gut's Secret Brain Controls More Than Digestion",
+      "views": 2,
       "watch_minutes": 0,
       "avg_view_percent": 0.0,
       "likes": 0,
-      "url": "https://www.youtube.com/watch?v=S1iuVaCMzpQ"
+      "url": "https://www.youtube.com/watch?v=wQi7tNik_uU"
+    },
+    {
+      "id": "m-2x4J6P9Fs",
+      "title": "The Fish with a Crystal Helmet: Barreleye's Transparent Head",
+      "views": 1,
+      "watch_minutes": 0,
+      "avg_view_percent": 0.8,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=m-2x4J6P9Fs"
+    },
+    {
+      "id": "WldrTRzuvxs",
+      "title": "The Yeti Crab: Farming Bacteria on a Living Furnace",
+      "views": 1,
+      "watch_minutes": 0,
+      "avg_view_percent": 0.0,
+      "likes": 0,
+      "url": "https://www.youtube.com/watch?v=WldrTRzuvxs"
     }
   ],
   "analytics_error": null,
   "recent_uploads": [
     {
-      "id": "B1yAQ2fdO9s",
-      "title": "The SHOCKING Truth About Mercury's Two-Year Day",
-      "published_at": "2026-11-09T23:17:13Z",
+      "id": "i1fsmWRqI9w",
+      "title": "The Venomous Night Hunter: Hispaniolan Solenodon's Secret Bite",
+      "published_at": "2026-11-16T23:12:22Z",
       "duration_seconds": 50,
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=B1yAQ2fdO9s"
+      "url": "https://www.youtube.com/watch?v=i1fsmWRqI9w"
     },
     {
-      "id": "1tZHVTvoEWg",
-      "title": "Your Skin Is a Hidden Battery Generating Tiny Electricity",
-      "published_at": "2026-11-09T17:23:05Z",
-      "duration_seconds": 51,
+      "id": "_3dJCSiT7V8",
+      "title": "Jupiter's Giant Storm Swallows Earth Whole",
+      "published_at": "2026-11-16T16:59:30Z",
+      "duration_seconds": 56,
+      "views": 1,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=_3dJCSiT7V8"
+    },
+    {
+      "id": "bkCoK__v-Mo",
+      "title": "The Yeti Crab: Deep\u2011Sea Hairy Farmer of Alien Bacteria",
+      "published_at": "2026-11-15T23:46:19Z",
+      "duration_seconds": 53,
+      "views": 1,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=bkCoK__v-Mo"
+    },
+    {
+      "id": "c_xvfunVDW4",
+      "title": "The SHOCKING Power Plant Inside Your Head",
+      "published_at": "2026-11-15T14:42:25Z",
+      "duration_seconds": 44,
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=1tZHVTvoEWg"
+      "url": "https://www.youtube.com/watch?v=c_xvfunVDW4"
     },
     {
-      "id": "tUw_YfNNWCg",
-      "title": "The Hidden Shock Absorbers Inside Your Ears",
-      "published_at": "2026-11-08T18:39:52Z",
+      "id": "L9GOiT1C-us",
+      "title": "The SHOCKING Geysers of Saturn\u2019s Icy Moon Enceladus",
+      "published_at": "2026-11-14T23:38:53Z",
       "duration_seconds": 48,
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=tUw_YfNNWCg"
+      "url": "https://www.youtube.com/watch?v=L9GOiT1C-us"
     },
     {
-      "id": "0HBzbHijIhQ",
-      "title": "The Secret Venom of the Hispaniolan Solenodon",
-      "published_at": "2026-11-08T14:16:47Z",
-      "duration_seconds": 49,
+      "id": "5WsvS7Caj1k",
+      "title": "The SHOCKING Truth About Your Heart's Solo Rhythm",
+      "published_at": "2026-11-14T18:59:15Z",
+      "duration_seconds": 51,
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=0HBzbHijIhQ"
+      "url": "https://www.youtube.com/watch?v=5WsvS7Caj1k"
     },
     {
-      "id": "AQvzpAy-RLs",
-      "title": "Your Spleen: The Secret Blood Tank That Powers Your Sprint",
-      "published_at": "2026-11-07T23:21:57Z",
-      "duration_seconds": 53,
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=AQvzpAy-RLs"
-    },
-    {
-      "id": "VlEspGMIsQY",
-      "title": "The Yeti Crab\u2019s Secret: Farming Food on Its Furry Claws",
-      "published_at": "2026-11-07T18:27:54Z",
-      "duration_seconds": 50,
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=VlEspGMIsQY"
-    },
-    {
-      "id": "crvnm_CXsfU",
-      "title": "Mars Sunsets: The Blue Twilight of the Red Planet",
-      "published_at": "2026-11-07T13:54:42Z",
-      "duration_seconds": 50,
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=crvnm_CXsfU"
-    },
-    {
-      "id": "yimKjl71bb0",
-      "title": "The SHOCKING Truth About the Icefish\u2019s Colorless Blood",
-      "published_at": "2026-11-06T23:57:38Z",
+      "id": "eDTDM2dLrFM",
+      "title": "The Velvet Worm: Nature\u2019s Living Glue Gun",
+      "published_at": "2026-11-14T14:04:28Z",
       "duration_seconds": 46,
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=yimKjl71bb0"
+      "url": "https://www.youtube.com/watch?v=eDTDM2dLrFM"
     },
     {
-      "id": "zfk2DTmYQVY",
-      "title": "The Yeti Crab: Deep\u2011Sea Farmer with Glowing Gardens",
-      "published_at": "2026-11-06T00:43:04Z",
-      "duration_seconds": 53,
-      "views": 4,
-      "likes": 0,
-      "comments": 0,
-      "url": "https://www.youtube.com/watch?v=zfk2DTmYQVY"
-    },
-    {
-      "id": "OH9G_tEp-YY",
-      "title": "The Hidden Blind Spot Your Brain Covers Up",
-      "published_at": "2026-11-05T20:59:13Z",
-      "duration_seconds": 48,
+      "id": "Te48NnPVetM",
+      "title": "The SHOCKING Venom of the Caribbean Solenodon",
+      "published_at": "2026-11-13T20:45:55Z",
+      "duration_seconds": 54,
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=OH9G_tEp-YY"
+      "url": "https://www.youtube.com/watch?v=Te48NnPVetM"
     },
     {
-      "id": "SQs6r4SDQQc",
-      "title": "The Venomous Mammal That Outsmarts Snakes",
-      "published_at": "2026-11-05T15:23:36Z",
-      "duration_seconds": 51,
-      "views": 8,
+      "id": "x4xgAVpx3u0",
+      "title": "The Moon That Sprays Water Rockets Into Space",
+      "published_at": "2026-11-13T15:20:38Z",
+      "duration_seconds": 52,
+      "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=SQs6r4SDQQc"
+      "url": "https://www.youtube.com/watch?v=x4xgAVpx3u0"
     },
     {
-      "id": "kHL90K-zqjs",
+      "id": "T8Itm9_eRuk",
+      "title": "The SHOCKING Secret: Your Stomach Eats Itself Every Week",
+      "published_at": "2026-11-13T00:55:42Z",
+      "duration_seconds": 53,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=T8Itm9_eRuk"
+    },
+    {
+      "id": "EhPPtup6oDo",
       "title": "The SHOCKING Truth: Mercury's Day Outlasts Its Year",
-      "published_at": "2026-11-05T00:44:25Z",
+      "published_at": "2026-11-12T21:20:53Z",
       "duration_seconds": 50,
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "url": "https://www.youtube.com/watch?v=kHL90K-zqjs"
+      "url": "https://www.youtube.com/watch?v=EhPPtup6oDo"
+    },
+    {
+      "id": "H4QNJ1oEPAQ",
+      "title": "The SHOCKING Reason Your Skin Gets Goosebumps",
+      "published_at": "2026-11-12T15:56:45Z",
+      "duration_seconds": 44,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "url": "https://www.youtube.com/watch?v=H4QNJ1oEPAQ"
     }
   ]
 }
